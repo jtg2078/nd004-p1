@@ -86,19 +86,10 @@ main_page_head = '''
 main_page_content = '''
 <!DOCTYPE html>
 <html lang="en">
+  {head}
   <body>
-    <!-- Trailer Video Modal -->
-    <div class="modal" id="trailer">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
-            <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
-          </a>
-          <div class="scale-media" id="trailer-video-container">
-          </div>
-        </div>
-      </div>
-    </div>
+    <!-- Modal when click on movie -->
+    {movie_modal}
     
     <!-- Main Page Content -->
     <div class="container">
@@ -115,6 +106,20 @@ main_page_content = '''
     </div>
   </body>
 </html>
+'''
+
+trailer_video_modal = '''
+<div class="modal" id="trailer">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
+        <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
+      </a>
+      <div class="scale-media" id="trailer-video-container">
+      </div>
+    </div>
+  </div>
+</div>
 '''
 
 # A single movie entry html template
@@ -147,10 +152,12 @@ def open_movies_page(movies):
   output_file = open('fresh_tomatoes.html', 'w')
 
   # Replace the placeholder for the movie tiles with the actual dynamically generated content
-  rendered_content = main_page_content.format(movie_tiles=create_movie_tiles_content(movies))
+  rendered_content = main_page_content.format(head=main_page_head,
+                                              movie_modal=trailer_video_modal,
+                                              movie_tiles=create_movie_tiles_content(movies))
 
   # Output the file
-  output_file.write(main_page_head + rendered_content)
+  output_file.write(rendered_content)
   output_file.close()
 
   # open the output file in the browser
