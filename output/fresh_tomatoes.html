@@ -1,0 +1,413 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+    <meta charset="utf-8">
+    <title>Fresh Tomatoes!</title>
+
+    <!-- Bootstrap 3 -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <style type="text/css" media="screen">
+        body {
+            padding-top: 80px;
+        }
+        .movie-tile {
+            margin-bottom: 20px;
+            padding-top: 20px;
+        }
+        .movie-tile:hover {
+            background-color: #EEE;
+            cursor: pointer;
+        }
+    </style>
+    <script type="text/javascript" charset="utf-8">
+        // Animate in the movies when the page loads
+        $(document).ready(function () {
+          $('.movie-tile').hide().first().show("fast", function showNext() {
+            $(this).next("div").show("fast", showNext);
+          });
+        });
+    </script>
+</head>
+
+  <body>
+    <!-- Modal when click on movie -->
+    
+    <div id="extraCreditModals">
+        
+    <style>
+        .modal-dialog {
+          width: 80%;
+          height: 80%;
+          margin-right: auto;
+          margin-left: auto;
+          margin-top: 10%;
+        }
+        .modal-content {
+          height:80%;
+        }
+        .hanging-close {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            z-index: 9001;
+        }
+        .cnt a {
+          text-decoration:none
+        }
+        .cnt ul{
+          list-style-type: none;
+          margin:0;
+          padding: 0;
+        }
+        .cnt {
+          position:absolute;
+          width: 100%;
+          height:100%;
+          background:#333;
+        }
+        .cnt .top{
+          position:relative;
+          height:100%;
+          width:100%;
+          background:black;
+        }
+        .cnt .top .content {
+          display:none;
+          color: #fff;
+        }
+        .cnt .top .content.active {
+          display:block;
+        }
+        .cnt .bottom{
+          position:relative;
+          height:50px;
+          bottom:50px;
+        }
+        .cnt .bottom .menu {
+          position:absolute;
+          width: 100%;
+
+        }
+        .cnt .bottom .menu li{
+          display:inline-block;
+          width: 25%;
+          margin:0;
+          min-height:50px;
+          padding:0;
+          box-sizing: border-box;
+          text-align:center;
+          margin-right:-4px;
+        }
+        .cnt .bottom .menu a{
+          display:block;
+          color:#666;
+          background:#191717;
+          height:100%;
+          min-height:50px;
+          line-height:50px;
+          font-size:14px;
+        }
+        .cnt .bottom .menu a:active,
+        .cnt .bottom .menu a.active {
+          background:#FFC917;
+        }
+        .cnt .bottom .menu a:hover {
+          color: #FFC917;
+        }
+        .cnt .bottom .menu a:active{
+          color:#666;
+        }
+        .cnt .bottom .menu a:hover.active {
+          color:#666;
+        }
+        .scale-media iframe {
+            border: none;
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            background-color: black;
+            padding-bottom:50px;
+        }
+    </style>
+    
+        
+    <div class="modal" id="194662">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
+            <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
+          </a>
+          <div class="cnt">
+             <section class="top">
+                <div id="194662-synopsis" class="content active">
+    <div class="synopsis">
+        <div class="title">Birdman</div>
+        <div class="overview">A fading actor best known for his portrayal of a popular superhero attempts to mount a comeback by appearing in a Broadway play. As opening night approaches, his attempts to become more altruistic, rebuild his career, and reconnect with friends and family prove more difficult than expected.</div>
+        <div class="poster">http://image.tmdb.org/t/p/w780/rSZs93P0LLxqlVEbI001UKoeCQC.jpg</div>
+        <div class="trailer">https://www.youtube.com/watch?v=2bqh-UCY6Zg</div>
+        <div class="genres"><ul><li>Comedy</li><li>Drama</li></ul></div>
+        <div class="score">7.8</div>
+        <div class="certification">R</div>
+        <div class="year">2014</div>
+        <div class="backdrop">http://image.tmdb.org/t/p/w780/AsJVim0Hk3KbQPbfjyijfjqmaoZ.jpg</div>
+        <div class="runtime">119</div>
+    </div>
+    </div>
+                <div id="194662-trailer" class="content trailer trailer-need-init">
+    <div class="scale-media trailer-video" id="194662-trailer-video-container" data-content="2bqh-UCY6Zg"></div>
+    </div>
+                <div id="194662-cast" class="content">cast</div>
+                <div id="194662-review" class="content">review</div>
+             </section>
+             <section class="bottom">
+               <nav class="menu">
+                 <ul>
+                   <li><a class="active" href="#" data-content="synopsis">SYNOPSIS</a></li>
+                   <li><a                href="#" data-content="trailer">TRAILER</a></li>
+                   <li><a                href="#" data-content="cast">CAST</a></li>
+                   <li><a                href="#" data-content="review">REVIEW</a></li>
+                 </ul>
+               </nav>
+             </section>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="modal" id="120467">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
+            <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
+          </a>
+          <div class="cnt">
+             <section class="top">
+                <div id="120467-synopsis" class="content active">
+    <div class="synopsis">
+        <div class="title">The Grand Budapest Hotel</div>
+        <div class="overview">The Grand Budapest Hotel tells of a legendary concierge at a famous European hotel between the wars and his friendship with a young employee who becomes his trusted protégé. The story involves the theft and recovery of a priceless Renaissance painting, the battle for an enormous family fortune and the slow and then sudden upheavals that transformed Europe during the first half of the 20th century.</div>
+        <div class="poster">http://image.tmdb.org/t/p/w780/nX5XotM9yprCKarRH4fzOq1VM1J.jpg</div>
+        <div class="trailer">https://www.youtube.com/watch?v=HjV0D8RTQ5k</div>
+        <div class="genres"><ul><li>Comedy</li><li>Drama</li></ul></div>
+        <div class="score">7.9</div>
+        <div class="certification"></div>
+        <div class="year">2014</div>
+        <div class="backdrop">http://image.tmdb.org/t/p/w780/3AZX2KB73kSza76h9O4bzdNeIac.jpg</div>
+        <div class="runtime">99</div>
+    </div>
+    </div>
+                <div id="120467-trailer" class="content trailer trailer-need-init">
+    <div class="scale-media trailer-video" id="120467-trailer-video-container" data-content="HjV0D8RTQ5k"></div>
+    </div>
+                <div id="120467-cast" class="content">cast</div>
+                <div id="120467-review" class="content">review</div>
+             </section>
+             <section class="bottom">
+               <nav class="menu">
+                 <ul>
+                   <li><a class="active" href="#" data-content="synopsis">SYNOPSIS</a></li>
+                   <li><a                href="#" data-content="trailer">TRAILER</a></li>
+                   <li><a                href="#" data-content="cast">CAST</a></li>
+                   <li><a                href="#" data-content="review">REVIEW</a></li>
+                 </ul>
+               </nav>
+             </section>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="modal" id="244786">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
+            <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
+          </a>
+          <div class="cnt">
+             <section class="top">
+                <div id="244786-synopsis" class="content active">
+    <div class="synopsis">
+        <div class="title">Whiplash</div>
+        <div class="overview">Under the direction of a ruthless instructor, a talented young drummer begins to pursue perfection at any cost, even his humanity.</div>
+        <div class="poster">http://image.tmdb.org/t/p/w780/lIv1QinFqz4dlp5U4lQ6HaiskOZ.jpg</div>
+        <div class="trailer">https://www.youtube.com/watch?v=7d_jQycdQGo</div>
+        <div class="genres"><ul><li>Drama</li><li>Music</li></ul></div>
+        <div class="score">8.6</div>
+        <div class="certification">R</div>
+        <div class="year">2014</div>
+        <div class="backdrop">http://image.tmdb.org/t/p/w780/qU8IpZlBNsTHNcApMHjtoQb4wp2.jpg</div>
+        <div class="runtime">105</div>
+    </div>
+    </div>
+                <div id="244786-trailer" class="content trailer trailer-need-init">
+    <div class="scale-media trailer-video" id="244786-trailer-video-container" data-content="7d_jQycdQGo"></div>
+    </div>
+                <div id="244786-cast" class="content">cast</div>
+                <div id="244786-review" class="content">review</div>
+             </section>
+             <section class="bottom">
+               <nav class="menu">
+                 <ul>
+                   <li><a class="active" href="#" data-content="synopsis">SYNOPSIS</a></li>
+                   <li><a                href="#" data-content="trailer">TRAILER</a></li>
+                   <li><a                href="#" data-content="cast">CAST</a></li>
+                   <li><a                href="#" data-content="review">REVIEW</a></li>
+                 </ul>
+               </nav>
+             </section>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="modal" id="245891">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
+            <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
+          </a>
+          <div class="cnt">
+             <section class="top">
+                <div id="245891-synopsis" class="content active">
+    <div class="synopsis">
+        <div class="title">John Wick</div>
+        <div class="overview">After the sudden death of his beloved wife, John Wick receives one last gift from her, a beagle puppy named Daisy, and a note imploring him not to forget how to love. But John's mourning is interrupted when his 1969 Boss Mustang catches the eye of sadistic thug Iosef Tarasov who breaks into his house and steals it, beating John unconscious in the process. Unwittingly, he has just reawakened one of the most brutal assassins the underworld has ever known.</div>
+        <div class="poster">http://image.tmdb.org/t/p/w780/sq2MmFv9sanl9PFMfbdaBLveSJ8.jpg</div>
+        <div class="trailer">https://www.youtube.com/watch?v=RllJtOw0USI</div>
+        <div class="genres"><ul><li>Action</li><li>Thriller</li></ul></div>
+        <div class="score">7.2</div>
+        <div class="certification">R</div>
+        <div class="year">2014</div>
+        <div class="backdrop">http://image.tmdb.org/t/p/w780/mFb0ygcue4ITixDkdr7wm1Tdarx.jpg</div>
+        <div class="runtime">101</div>
+    </div>
+    </div>
+                <div id="245891-trailer" class="content trailer trailer-need-init">
+    <div class="scale-media trailer-video" id="245891-trailer-video-container" data-content="RllJtOw0USI"></div>
+    </div>
+                <div id="245891-cast" class="content">cast</div>
+                <div id="245891-review" class="content">review</div>
+             </section>
+             <section class="bottom">
+               <nav class="menu">
+                 <ul>
+                   <li><a class="active" href="#" data-content="synopsis">SYNOPSIS</a></li>
+                   <li><a                href="#" data-content="trailer">TRAILER</a></li>
+                   <li><a                href="#" data-content="cast">CAST</a></li>
+                   <li><a                href="#" data-content="review">REVIEW</a></li>
+                 </ul>
+               </nav>
+             </section>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+        
+    <script type="text/javascript" charset="utf-8">
+
+        // need to reset the modal active tab and remove trailer etc... when closed
+        $(".modal").on("hidden.bs.modal", function(e) {
+
+            var targetModal = $(e.target);
+            var movieID = targetModal.attr("id");
+
+            // reset the active tab and content
+            $("#"+movieID+" .cnt .top .content").removeClass("active");
+            $("#"+movieID+" .cnt .top .content").first().addClass("active");
+            $("#"+movieID+" .cnt .bottom .menu a").removeClass("active");
+            $("#"+movieID+" .cnt .bottom .menu a").first().addClass("active");
+
+            // remove the trailer and reset trailer init state
+            $("#"+movieID+"-trailer-video-container").empty();
+            $("#"+movieID+" .cnt .top .content.trailer").first().addClass("trailer-need-init");
+
+        });
+
+        $(".cnt .bottom .menu").on("click", "a", function() {
+
+            // find the correct modal first by looking at id
+            var movieID = $(this).closest(".modal").attr("id");
+
+            var contentID = $(this).attr("data-content");
+            var targetTab = $("#"+movieID+"-"+contentID);
+            $("#"+movieID+" .cnt .top .content").removeClass("active");
+            targetTab.addClass("active");
+
+            // if the tab is trailer, initialize the youtube player and play immediately
+            if(targetTab.hasClass("trailer-need-init")) {
+                setupYoutubeTrailer(movieID);
+                targetTab.removeClass("trailer-need-init");
+            }
+
+            $("#"+movieID+" .cnt .bottom .menu a").removeClass("active");
+            $(this).addClass("active");
+        });
+
+        // Pause the video when the modal is closed
+        $(document).on('click', '.hanging-close, .modal-backdrop', function (event) {
+            // Remove the src so the player itself gets removed, as this is the only
+            // reliable way to ensure the video stops playing in IE
+            $(".trailer-video").empty();
+        });
+
+        // setup trailer youtube iframe
+        function setupYoutubeTrailer(movieID) {
+            var container = $("#"+movieID+"-trailer-video-container");
+            var trailerYouTubeId = container.attr("data-content");
+            var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
+            container.empty().append($("<iframe></iframe>", {
+              'id': 'trailer-video',
+              'type': 'text-html',
+              'src': sourceUrl,
+              'frameborder': 0
+            }));
+        }
+
+    </script>
+    
+    </div>
+    
+    
+    <!-- Main Page Content -->
+    <div class="container">
+      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Fresh Tomatoes Movie Trailers</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-toggle="modal" data-target="#194662">
+    <img src="http://image.tmdb.org/t/p/w780/rSZs93P0LLxqlVEbI001UKoeCQC.jpg" width="220" height="342">
+    <h2>Birdman</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-toggle="modal" data-target="#120467">
+    <img src="http://image.tmdb.org/t/p/w780/nX5XotM9yprCKarRH4fzOq1VM1J.jpg" width="220" height="342">
+    <h2>The Grand Budapest Hotel</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-toggle="modal" data-target="#244786">
+    <img src="http://image.tmdb.org/t/p/w780/lIv1QinFqz4dlp5U4lQ6HaiskOZ.jpg" width="220" height="342">
+    <h2>Whiplash</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-toggle="modal" data-target="#245891">
+    <img src="http://image.tmdb.org/t/p/w780/sq2MmFv9sanl9PFMfbdaBLveSJ8.jpg" width="220" height="342">
+    <h2>John Wick</h2>
+</div>
+
+    </div>
+  </body>
+</html>
