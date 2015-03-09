@@ -1,9 +1,14 @@
+# coding: utf-8
+
 import webbrowser
 import os
 import re
 
+from html_template import default_modal, extra_credit_modal
+
+
 # Styles and scripting for the page
-main_page_head = '''
+main_page_head = u'''
 <head>
     <meta charset="utf-8">
     <title>Fresh Tomatoes!</title>
@@ -17,21 +22,6 @@ main_page_head = '''
         body {
             padding-top: 80px;
         }
-        #trailer .modal-dialog {
-            margin-top: 200px;
-            width: 640px;
-            height: 480px;
-        }
-        .hanging-close {
-            position: absolute;
-            top: -12px;
-            right: -12px;
-            z-index: 9001;
-        }
-        #trailer-video {
-            width: 100%;
-            height: 100%;
-        }
         .movie-tile {
             margin-bottom: 20px;
             padding-top: 20px;
@@ -40,38 +30,8 @@ main_page_head = '''
             background-color: #EEE;
             cursor: pointer;
         }
-        .scale-media {
-            padding-bottom: 56.25%;
-            position: relative;
-        }
-        .scale-media iframe {
-            border: none;
-            height: 100%;
-            position: absolute;
-            width: 100%;
-            left: 0;
-            top: 0;
-            background-color: white;
-        }
     </style>
     <script type="text/javascript" charset="utf-8">
-        // Pause the video when the modal is closed
-        $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
-            // Remove the src so the player itself gets removed, as this is the only
-            // reliable way to ensure the video stops playing in IE
-            $("#trailer-video-container").empty();
-        });
-        // Start playing the video whenever the trailer modal is opened
-        $(document).on('click', '.movie-tile', function (event) {
-            var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
-            var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
-            $("#trailer-video-container").empty().append($("<iframe></iframe>", {
-              'id': 'trailer-video',
-              'type': 'text-html',
-              'src': sourceUrl,
-              'frameborder': 0
-            }));
-        });
         // Animate in the movies when the page loads
         $(document).ready(function () {
           $('.movie-tile').hide().first().show("fast", function showNext() {
@@ -83,7 +43,7 @@ main_page_head = '''
 '''
 
 # The main page layout and title bar
-main_page_content = '''
+main_page_content = u'''
 <!DOCTYPE html>
 <html lang="en">
   {head}
@@ -108,27 +68,21 @@ main_page_content = '''
 </html>
 '''
 
-trailer_video_modal = '''
-<div class="modal" id="trailer">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
-        <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
-      </a>
-      <div class="scale-media" id="trailer-video-container">
-      </div>
-    </div>
-  </div>
-</div>
-'''
-
 # A single movie entry html template
-movie_tile_content = '''
+movie_tile_content = u'''
 <div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">
     <img src="{poster_image_url}" width="220" height="342">
     <h2>{movie_title}</h2>
 </div>
 '''
+
+movie_tile_content_extra_credit = u'''
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-toggle="modal" data-target="#{movie_id}">
+    <img src="{poster_image_url}" width="220" height="342">
+    <h2>{movie_title}</h2>
+</div>
+'''
+
 
 def create_movie_tiles_content(movies):
     # The HTML content for this section of the page
@@ -147,19 +101,44 @@ def create_movie_tiles_content(movies):
         )
     return content
 
+
+def create_movie_tiles_content_extra_credit(movies):
+    # The HTML content for this section of the page
+    content = ''
+    for movie in movies:
+        # Append the tile for the movie with its content filled in
+        content += movie_tile_content_extra_credit.format(
+            movie_title=movie.title,
+            poster_image_url=movie.poster_image_url,
+            movie_id=movie.movie_id
+        )
+    return content
+
+
+def open_web_page(rendered_content):
+    # Create or overwrite the output file
+    output_file = open('output/fresh_tomatoes.html', 'w')
+
+    # Output the file
+    output_file.write(rendered_content.encode("UTF-8"))
+    output_file.close()
+
+    # open the output file in the browser
+    url = os.path.abspath(output_file.name)
+    webbrowser.open('file://' + url, new=2)  # open in a new tab, if possible
+
+
 def open_movies_page(movies):
-  # Create or overwrite the output file
-  output_file = open('fresh_tomatoes.html', 'w')
+    # Replace the placeholder for the movie tiles with the actual dynamically generated content
+    rendered_content = main_page_content.format(head=main_page_head,
+                                                movie_modal=default_modal.trailer_video_modal,
+                                                movie_tiles=create_movie_tiles_content(movies))
+    open_web_page(rendered_content)
 
-  # Replace the placeholder for the movie tiles with the actual dynamically generated content
-  rendered_content = main_page_content.format(head=main_page_head,
-                                              movie_modal=trailer_video_modal,
-                                              movie_tiles=create_movie_tiles_content(movies))
 
-  # Output the file
-  output_file.write(rendered_content)
-  output_file.close()
-
-  # open the output file in the browser
-  url = os.path.abspath(output_file.name)
-  webbrowser.open('file://' + url, new=2) # open in a new tab, if possible
+def open_movie_page_extra_credit(moviedb_movies):
+    extra_credit = extra_credit_modal.ExtraCredit(moviedb_movies=moviedb_movies)
+    rendered_content = main_page_content.format(head=main_page_head,
+                                                movie_modal=extra_credit.create_modal_collection_html(),
+                                                movie_tiles=create_movie_tiles_content_extra_credit(moviedb_movies))
+    open_web_page(rendered_content)
