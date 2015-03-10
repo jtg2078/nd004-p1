@@ -31,9 +31,11 @@ class ExtraCredit(object):
     def create_modal_html(self, moviedb_movie):
         synopsis = self.create_synopsis_html(moviedb_movie)
         trailer = self.create_trailer_html(moviedb_movie)
+        cast = self.create_cast_html(moviedb_movie)
         return ExtraCredit.modal_template.format(movie_id=moviedb_movie.movie_id,
                                                  synopsis_tab=synopsis,
-                                                 trailer_tab=trailer)
+                                                 trailer_tab=trailer,
+                                                 cast_tab=cast)
 
     def create_modal_collection_html(self):
         modals_html = ''
@@ -148,6 +150,27 @@ class ExtraCredit(object):
             background-color: black;
             padding-bottom:50px;
         }
+        .cast-list {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            padding-bottom: 50px;
+            overflow-y: scroll;
+        }
+        .cast-list-actor {
+            padding:20px;
+            border-bottom:solid 1px #9E9E9E;
+        }
+        .actor-left-panel {
+            float:left;
+            margin-right:15px;
+        }
+        .actor-name {
+            font-size:30px;
+        }
+        .actor-as {
+            margin: 10px 0;
+        }
     </style>
     '''
 
@@ -162,7 +185,7 @@ class ExtraCredit(object):
              <section class="top">
                 <div id="{movie_id}-synopsis" class="content active">{synopsis_tab}</div>
                 <div id="{movie_id}-trailer" class="content trailer trailer-need-init">{trailer_tab}</div>
-                <div id="{movie_id}-cast" class="content">cast</div>
+                <div id="{movie_id}-cast" class="content">{cast_tab}</div>
                 <div id="{movie_id}-review" class="content">review</div>
              </section>
              <section class="bottom">
@@ -263,3 +286,29 @@ class ExtraCredit(object):
     trailer_template = u'''
     <div class="scale-media trailer-video" id="{movieID}-trailer-video-container" data-content="{youtubeID}"></div>
     '''
+
+    cast_template = u'''
+    <div class="cast-list">{actor_list}</div>
+    '''
+
+    actor_template = u'''
+    <div class="cast-list-actor clearfix">
+        <div class="actor-left-panel">
+            <img class="avatar" src="{avatar_url}" width="185">
+        </div>
+        <div class="actor-right-panel">
+            <div class="actor-name">{actor_name}</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">{character_name}</div>
+        </div>
+    </div>
+    '''
+
+    def create_cast_html(self, moviedb_movie):
+        actors = ''
+        for cast in moviedb_movie.moviedb_json['credits']['cast']:
+            actors += ExtraCredit.actor_template.format(avatar_url=cast['profile_path'],
+                                                        character_name=cast['character'],
+                                                        actor_name=cast['name'])
+        return ExtraCredit.cast_template.format(actor_list=actors)
+
