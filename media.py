@@ -21,7 +21,7 @@ class TheMovieDBMovie(Movie):
         self.moviedb_json = moviedb_json
         self.genres = [g['name'] for g in moviedb_json['genres']]
         self.score = moviedb_json['vote_average']
-        self.certification = moviedb_json['releases']['countries'][0]['certification']
+        self.certification = [c for c in moviedb_json['releases']['countries'] if c['iso_3166_1'] == 'US'][0]['certification']
         self.year = moviedb_json['release_date'].split("-")[0]
         self.backdrop = moviedb_json['backdrop_path']
         self.runtime = moviedb_json['runtime']

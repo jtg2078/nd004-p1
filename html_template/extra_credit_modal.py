@@ -1,4 +1,5 @@
 # coding: utf-8
+import re
 
 class ExtraCredit(object):
     def __init__(self, moviedb_movies):
@@ -57,9 +58,23 @@ class ExtraCredit(object):
 
     style_template = u'''
     <style>
+
+        /* https://css-tricks.com/custom-scrollbars-in-webkit/ */
+        .modal-dialog ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        .modal-dialog ::-webkit-scrollbar-track {
+            background-color:#191717;
+        }
+
+        .modal-dialog ::-webkit-scrollbar-thumb {
+            background-color:#424242;
+        }
+
         .modal-dialog {
           width: 80%;
-          height: 80%;
+          height: 90%;
           margin-right: auto;
           margin-left: auto;
           margin-top: 10%;
@@ -68,13 +83,24 @@ class ExtraCredit(object):
           height:80%;
         }
         .hanging-close {
-            position: absolute;
-            top: -12px;
-            right: -12px;
-            z-index: 9001;
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          z-index: 9001;
+          border: solid 1px #fff;
+          border-radius: 3px;
+          padding: 4px 8px;
+          color: #fff;
+          text-decoration:none;
+        }
+        .hanging-close:hover {
+            background-color:#fff;
+            color:#000;
+            text-decoration:none;
+            border: solid 1px #000;
         }
         .cnt a {
-          text-decoration:none
+          text-decoration:none;
         }
         .cnt ul{
           list-style-type: none;
@@ -92,10 +118,13 @@ class ExtraCredit(object):
           height:100%;
           width:100%;
           background:black;
+          padding-bottom:50px;
         }
         .cnt .top .content {
           display:none;
           color: #fff;
+          width:100%;
+          height:100%;
         }
         .cnt .top .content.active {
           display:block;
@@ -142,30 +171,146 @@ class ExtraCredit(object):
         .cnt .bottom .menu a:hover.active {
           color:#666;
         }
+
+        .synopsis {
+          font-family: 'Open Sans', sans-serif;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: top center;
+          padding-left:20px;
+          position: relative;
+          width:100%;
+          height:100%;
+        }
+
+        .synopsis .bg {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          left: 0;
+          top: 0;
+          background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 100%); /* FF3.6+ */
+          background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.65))); /* Chrome,Safari4+ */
+          background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 100%); /* Chrome10+,Safari5.1+ */
+          background: -o-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 100%); /* Opera 11.10+ */
+          background: -ms-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 100%); /* IE10+ */
+          background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 100%); /* W3C */
+          filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#a6000000', GradientType=0); /* IE6-9 */
+        }
+
+        .synopsis .should-be-relative {
+          position: relative;
+          width:100%;
+          height:100%;
+          overflow-y:scroll;
+        }
+
+        .synopsis .title {
+          font-size: 60px;
+          color: #fff;
+          margin: 60px 0 10px 0;
+
+        }
+
+        .synopsis .top-group {
+
+        }
+
+        .synopsis .top-group > div {
+          display:inline-block;
+          color:fff;
+          line-height: 40px;
+          margin: 0 10px;
+          text-align: center;
+          font-size:16px;
+        }
+
+        .synopsis .top-group .score {
+          background:#8BC34A;
+          font-weight:bold;
+          border-radius:100%;
+          width:40px;
+          text-align: center;
+        }
+
+        .synopsis .top-group .certification {
+          padding:0 10px;
+          line-height: 21px;
+          font-size:13px;
+          font-weight:bold;
+          border-radius:3px;
+          border:solid 1px white;
+        }
+
+        .synopsis .hr {
+          border-bottom: 1px solid rgba(238, 238, 238, 0.33);
+          margin: 20px auto 40px auto;
+        }
+
+        .synopsis .overview {
+
+        }
+
+        .synopsis .overview .left {
+          float: left;
+          width: 100px;
+        }
+
+        .synopsis .overview .right {
+          float: left;
+          margin-left: 20px;
+          width: 600px;
+          display: inline-block;
+          color: #E9E9E9;
+          line-height: 22px;
+        }
+
+        .synopsis .overview .right .genres ul {
+          padding: 0;
+          margin-bottom:40px;
+        }
+
+        .synopsis .overview .right .genres li {
+          list-style: none;
+          display: inline-block;
+          border: 1px solid #eee;
+          padding: 2px 10px;
+          margin-right: 10px;
+          border-radius: 3px;
+        }
+
+
+        .scale-media {
+            width:100%;
+            height:100%;
+            position:relative;
+        }
         .scale-media iframe {
             border: none;
             height: 100%;
-            position: absolute;
             width: 100%;
+            position: absolute;
             left: 0;
             top: 0;
             background-color: black;
-            padding-bottom:50px;
         }
         .cast-list {
             height: 100%;
-            width: 100%;
-            position: absolute;
-            padding-bottom: 50px;
             overflow-y: scroll;
         }
         .cast-list-actor {
             padding:20px;
             border-bottom:solid 1px #9E9E9E;
         }
-        .actor-left-panel {
+        .cast-list-actor:last-child{
+            border-bottom:none;
+        }
+        .actor-avatar-panel {
             float:left;
             margin-right:15px;
+        }
+        .actor-info-panel {
+            float:left;
         }
         .actor-name {
             font-size:30px;
@@ -175,10 +320,21 @@ class ExtraCredit(object):
         }
         .review-list {
             height: 100%;
-            width: 100%;
             padding:20px;
-            padding-bottom: 50px;
             overflow-y: scroll;
+        }
+        .review-section-header {
+            margin-bottom:10px;
+        }
+        .review-movie-name {
+            font-size:30px;
+        }
+        .review-movie-year {
+            display:inline-block;
+            margin-left:5px;
+        }
+        .review-item-header {
+            margin-bottom:10px;
         }
     </style>
     '''
@@ -187,9 +343,7 @@ class ExtraCredit(object):
     <div class="modal" id="{movie_id}">
       <div class="modal-dialog">
         <div class="modal-content">
-          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
-            <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
-          </a>
+          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">CLOSE</a>
           <div class="cnt">
              <section class="top">
                 <div id="{movie_id}-synopsis" class="content active">{synopsis_tab}</div>
@@ -278,17 +432,30 @@ class ExtraCredit(object):
     '''
 
     synopsis_template = u'''
-    <div class="synopsis">
+    <div class="synopsis" style="background-image:url('{backdrop}');">
+      <div class="bg"></div>
+      <div class="should-be-relative">
         <div class="title">{title}</div>
-        <div class="overview">{overview}</div>
-        <div class="poster">{poster}</div>
-        <div class="trailer">{trailer}</div>
-        <div class="genres">{genres}</div>
-        <div class="score">{score}</div>
-        <div class="certification">{certification}</div>
-        <div class="year">{year}</div>
-        <div class="backdrop">{backdrop}</div>
-        <div class="runtime">{runtime}</div>
+        <section class="top-group">
+          <div class="score">{score}</div>
+          <div class="certification">{certification}</div>
+          <div class="year">{year}</div>
+          <div class="runtime">{runtime} min</div>
+        </section>
+        <section class="hr"></section>
+        <div class="overview clearfix">
+          <div class="left">
+            <img class="poster" src="{poster}" width="100"/>
+          </div>
+          <div class="right">
+            <div style="min-height:100px">{overview}</div>
+            <br/>
+            <div class="genres">{genres}</div>
+            <!--genres-->
+          </div>
+        </div>
+        <!--.overview-->
+      </div>
     </div>
     '''
 
@@ -302,10 +469,10 @@ class ExtraCredit(object):
 
     actor_template = u'''
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="{avatar_url}" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">{actor_name}</div>
             <div class="actor-as">as</div>
             <div class="character-name">{character_name}</div>
@@ -323,11 +490,11 @@ class ExtraCredit(object):
 
     review_list_template = u'''
     <div class="review-list">
-        <div>
+        <div class="review-section-header">
             <span class="review-movie-name">{movie_name}</span>
             <span class="review-movie-year">({movie_year})</span>
         </div>
-        <div>{review_list}</div>
+        <div class="review-list-section">{review_list}</div>
     </div>
     '''
 
@@ -342,10 +509,17 @@ class ExtraCredit(object):
     '''
 
     def create_review_html(self, moviedb_movie):
+
+        _paragraph_re = re.compile(r'(?:\r\n|\r|\n){2,}')
+
+        def nl2br(content):
+            # from http://flask.pocoo.org/snippets/28/
+            return u'\n\n'.join(u'<p>%s</p>' % p.replace('\n', '<br>\n') for p in _paragraph_re.split(content))
+
         reviews = ''
         for review in moviedb_movie.moviedb_json['reviews']['results']:
             reviews += ExtraCredit.review_template.format(reviewer_name=review['author'],
-                                                          review_content=review['content'])
+                                                          review_content=nl2br(review['content']))
         if reviews == '':
             reviews = 'It appears that The Movie DB has no reviews for this movie :('
         return ExtraCredit.review_list_template.format(movie_name=moviedb_movie.title,

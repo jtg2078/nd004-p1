@@ -18,6 +18,7 @@
         .movie-tile {
             margin-bottom: 20px;
             padding-top: 20px;
+            min-height: 460px;
         }
         .movie-tile:hover {
             background-color: #EEE;
@@ -40,9 +41,23 @@
     <div id="extraCreditModals">
         
     <style>
+
+        /* https://css-tricks.com/custom-scrollbars-in-webkit/ */
+        .modal-dialog ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        .modal-dialog ::-webkit-scrollbar-track {
+            background-color:#191717;
+        }
+
+        .modal-dialog ::-webkit-scrollbar-thumb {
+            background-color:#424242;
+        }
+
         .modal-dialog {
           width: 80%;
-          height: 80%;
+          height: 90%;
           margin-right: auto;
           margin-left: auto;
           margin-top: 10%;
@@ -51,13 +66,24 @@
           height:80%;
         }
         .hanging-close {
-            position: absolute;
-            top: -12px;
-            right: -12px;
-            z-index: 9001;
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          z-index: 9001;
+          border: solid 1px #fff;
+          border-radius: 3px;
+          padding: 4px 8px;
+          color: #fff;
+          text-decoration:none;
+        }
+        .hanging-close:hover {
+            background-color:#fff;
+            color:#000;
+            text-decoration:none;
+            border: solid 1px #000;
         }
         .cnt a {
-          text-decoration:none
+          text-decoration:none;
         }
         .cnt ul{
           list-style-type: none;
@@ -75,10 +101,13 @@
           height:100%;
           width:100%;
           background:black;
+          padding-bottom:50px;
         }
         .cnt .top .content {
           display:none;
           color: #fff;
+          width:100%;
+          height:100%;
         }
         .cnt .top .content.active {
           display:block;
@@ -125,30 +154,146 @@
         .cnt .bottom .menu a:hover.active {
           color:#666;
         }
+
+        .synopsis {
+          font-family: 'Open Sans', sans-serif;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: top center;
+          padding-left:20px;
+          position: relative;
+          width:100%;
+          height:100%;
+        }
+
+        .synopsis .bg {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          left: 0;
+          top: 0;
+          background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 100%); /* FF3.6+ */
+          background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.65))); /* Chrome,Safari4+ */
+          background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 100%); /* Chrome10+,Safari5.1+ */
+          background: -o-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 100%); /* Opera 11.10+ */
+          background: -ms-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 100%); /* IE10+ */
+          background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 100%); /* W3C */
+          filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#a6000000', GradientType=0); /* IE6-9 */
+        }
+
+        .synopsis .should-be-relative {
+          position: relative;
+          width:100%;
+          height:100%;
+          overflow-y:scroll;
+        }
+
+        .synopsis .title {
+          font-size: 60px;
+          color: #fff;
+          margin: 60px 0 10px 0;
+
+        }
+
+        .synopsis .top-group {
+
+        }
+
+        .synopsis .top-group > div {
+          display:inline-block;
+          color:fff;
+          line-height: 40px;
+          margin: 0 10px;
+          text-align: center;
+          font-size:16px;
+        }
+
+        .synopsis .top-group .score {
+          background:#8BC34A;
+          font-weight:bold;
+          border-radius:100%;
+          width:40px;
+          text-align: center;
+        }
+
+        .synopsis .top-group .certification {
+          padding:0 10px;
+          line-height: 21px;
+          font-size:13px;
+          font-weight:bold;
+          border-radius:3px;
+          border:solid 1px white;
+        }
+
+        .synopsis .hr {
+          border-bottom: 1px solid rgba(238, 238, 238, 0.33);
+          margin: 20px auto 40px auto;
+        }
+
+        .synopsis .overview {
+
+        }
+
+        .synopsis .overview .left {
+          float: left;
+          width: 100px;
+        }
+
+        .synopsis .overview .right {
+          float: left;
+          margin-left: 20px;
+          width: 600px;
+          display: inline-block;
+          color: #E9E9E9;
+          line-height: 22px;
+        }
+
+        .synopsis .overview .right .genres ul {
+          padding: 0;
+          margin-bottom:40px;
+        }
+
+        .synopsis .overview .right .genres li {
+          list-style: none;
+          display: inline-block;
+          border: 1px solid #eee;
+          padding: 2px 10px;
+          margin-right: 10px;
+          border-radius: 3px;
+        }
+
+
+        .scale-media {
+            width:100%;
+            height:100%;
+            position:relative;
+        }
         .scale-media iframe {
             border: none;
             height: 100%;
-            position: absolute;
             width: 100%;
+            position: absolute;
             left: 0;
             top: 0;
             background-color: black;
-            padding-bottom:50px;
         }
         .cast-list {
             height: 100%;
-            width: 100%;
-            position: absolute;
-            padding-bottom: 50px;
             overflow-y: scroll;
         }
         .cast-list-actor {
             padding:20px;
             border-bottom:solid 1px #9E9E9E;
         }
-        .actor-left-panel {
+        .cast-list-actor:last-child{
+            border-bottom:none;
+        }
+        .actor-avatar-panel {
             float:left;
             margin-right:15px;
+        }
+        .actor-info-panel {
+            float:left;
         }
         .actor-name {
             font-size:30px;
@@ -158,10 +303,21 @@
         }
         .review-list {
             height: 100%;
-            width: 100%;
             padding:20px;
-            padding-bottom: 50px;
             overflow-y: scroll;
+        }
+        .review-section-header {
+            margin-bottom:10px;
+        }
+        .review-movie-name {
+            font-size:30px;
+        }
+        .review-movie-year {
+            display:inline-block;
+            margin-left:5px;
+        }
+        .review-item-header {
+            margin-bottom:10px;
         }
     </style>
     
@@ -169,23 +325,34 @@
     <div class="modal" id="194662">
       <div class="modal-dialog">
         <div class="modal-content">
-          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
-            <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
-          </a>
+          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">CLOSE</a>
           <div class="cnt">
              <section class="top">
                 <div id="194662-synopsis" class="content active">
-    <div class="synopsis">
+    <div class="synopsis" style="background-image:url('http://image.tmdb.org/t/p/w780/AsJVim0Hk3KbQPbfjyijfjqmaoZ.jpg');">
+      <div class="bg"></div>
+      <div class="should-be-relative">
         <div class="title">Birdman</div>
-        <div class="overview">A fading actor best known for his portrayal of a popular superhero attempts to mount a comeback by appearing in a Broadway play. As opening night approaches, his attempts to become more altruistic, rebuild his career, and reconnect with friends and family prove more difficult than expected.</div>
-        <div class="poster">http://image.tmdb.org/t/p/w780/rSZs93P0LLxqlVEbI001UKoeCQC.jpg</div>
-        <div class="trailer">https://www.youtube.com/watch?v=2bqh-UCY6Zg</div>
-        <div class="genres"><ul><li>Comedy</li><li>Drama</li></ul></div>
-        <div class="score">7.8</div>
-        <div class="certification">R</div>
-        <div class="year">2014</div>
-        <div class="backdrop">http://image.tmdb.org/t/p/w780/AsJVim0Hk3KbQPbfjyijfjqmaoZ.jpg</div>
-        <div class="runtime">119</div>
+        <section class="top-group">
+          <div class="score">7.8</div>
+          <div class="certification">R</div>
+          <div class="year">2014</div>
+          <div class="runtime">119 min</div>
+        </section>
+        <section class="hr"></section>
+        <div class="overview clearfix">
+          <div class="left">
+            <img class="poster" src="http://image.tmdb.org/t/p/w780/rSZs93P0LLxqlVEbI001UKoeCQC.jpg" width="100"/>
+          </div>
+          <div class="right">
+            <div style="min-height:100px">A fading actor best known for his portrayal of a popular superhero attempts to mount a comeback by appearing in a Broadway play. As opening night approaches, his attempts to become more altruistic, rebuild his career, and reconnect with friends and family prove more difficult than expected.</div>
+            <br/>
+            <div class="genres"><ul><li>Comedy</li><li>Drama</li></ul></div>
+            <!--genres-->
+          </div>
+        </div>
+        <!--.overview-->
+      </div>
     </div>
     </div>
                 <div id="194662-trailer" class="content trailer trailer-need-init">
@@ -194,10 +361,10 @@
                 <div id="194662-cast" class="content">
     <div class="cast-list">
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/niT4arrUKdtaxacmxL4IcUWYE6u.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Michael Keaton</div>
             <div class="actor-as">as</div>
             <div class="character-name">Riggan Thomson / Birdman</div>
@@ -205,10 +372,10 @@
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/xZo7qB575ssksOhSqfrs6FVqtPR.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Zach Galifianakis</div>
             <div class="actor-as">as</div>
             <div class="character-name">Jake</div>
@@ -216,10 +383,10 @@
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/iUiePUAQKN4GY6jorH9m23cbVli.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Edward Norton</div>
             <div class="actor-as">as</div>
             <div class="character-name">Mike Shiner</div>
@@ -227,10 +394,10 @@
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/dcBFknIkihfBDzuqXS9X0J2mFeM.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Emma Stone</div>
             <div class="actor-as">as</div>
             <div class="character-name">Sam Thomson</div>
@@ -238,10 +405,10 @@
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/8W02WOJI1pEGh2iqQsgITR5tV0P.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Naomi Watts</div>
             <div class="actor-as">as</div>
             <div class="character-name">Lesley</div>
@@ -249,10 +416,10 @@
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/vjUXYMi5576IogTakMA64Yk4xHk.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Amy Ryan</div>
             <div class="actor-as">as</div>
             <div class="character-name">Sylvia</div>
@@ -260,10 +427,10 @@
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/zQPFvKnNjmvpTb1SM66SBnOgth4.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Andrea Riseborough</div>
             <div class="actor-as">as</div>
             <div class="character-name">Laura</div>
@@ -271,10 +438,10 @@
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/scrfqDWvfyRBZlVvTEJvZbJxcER.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Merritt Wever</div>
             <div class="actor-as">as</div>
             <div class="character-name">Annie</div>
@@ -282,10 +449,10 @@
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/ddjjwMEHLBvzkZzZ5frEvJyWnZ6.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Lindsay Duncan</div>
             <div class="actor-as">as</div>
             <div class="character-name">Tabitha</div>
@@ -293,10 +460,10 @@
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/rpXCiaLqeQYcZN1Wic6TeE2PBHX.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Natalie Gold</div>
             <div class="actor-as">as</div>
             <div class="character-name">Clara</div>
@@ -304,10 +471,10 @@
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/yMF6twG8daFYdD6vDmonHHwpU77.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Kenny Chin</div>
             <div class="actor-as">as</div>
             <div class="character-name">Korean Grocer</div>
@@ -317,23 +484,23 @@
     </div>
                 <div id="194662-review" class="content">
     <div class="review-list">
-        <div>
+        <div class="review-section-header">
             <span class="review-movie-name">Birdman</span>
             <span class="review-movie-year">(2014)</span>
         </div>
-        <div>
+        <div class="review-list-section">
     <div class="review">
         <div class="review-item-header">
             <span>by</span>
             <span class="reviewer-name">Vincent</span>
         </div>
-        <div class="review-item-content">**mounting spontaneity** or (dumb luck)
+        <div class="review-item-content"><p>**mounting spontaneity** or (dumb luck)</p>
 
-It's not fair.
+<p>It's not fair.</p>
 
-I love Raymond Carver, long takes, theatre, Batman, NYC rooftops and alleyways, the blending layers of self-referential fiction, delirious fantasy, the creative process, the insane logistics of run-on cinematography, the seamless assembly of shifting environments, stepping into unresolved mental spaces, demonstrations of solitary madness and the unbearable anticipation of being, being judged, being booed, un-being, unhinging, delusional uppers, existential downers, magic surrealism, telekinetic fury, dreams of flying, throwing tantrums, the fragile yet invincible ego, immaculately constructed chaos, the recurring climax of ending it all -- where the blazes is that blasted improvisational drumming coming from? -- oh there, and there, so absurd, don't stop, the shot must go on, the show must go on, "You are not important, get used to it," she said, but so much angst overwhelms him, tethered to a feathered fantasy, a nagging reminder of what once was, or could have been, refusing to believe it's too late to soar to former heights, yet grounded by time and gravity, trapped in a narrative, caged in a fabrication, "You're an actress, honey," says another, "you have no self-respect" and all actors are game, Keaton and Stone zoned-in, knowing the pain, pretending to not care or pretending to matter, failing to be authentic, acting over acting, meta-acting meta-fiction meta-filmed with a meta-critical message: yeah, we're all messed-up and meta-fµcked, but after shooting your nose to spite the ruse, by unmasking the unexpected virtue of ignorance, peeling off layers of pretense and self-importance, you just might find a momentary strain of pure, uncomplicated innocence.
+<p>I love Raymond Carver, long takes, theatre, Batman, NYC rooftops and alleyways, the blending layers of self-referential fiction, delirious fantasy, the creative process, the insane logistics of run-on cinematography, the seamless assembly of shifting environments, stepping into unresolved mental spaces, demonstrations of solitary madness and the unbearable anticipation of being, being judged, being booed, un-being, unhinging, delusional uppers, existential downers, magic surrealism, telekinetic fury, dreams of flying, throwing tantrums, the fragile yet invincible ego, immaculately constructed chaos, the recurring climax of ending it all -- where the blazes is that blasted improvisational drumming coming from? -- oh there, and there, so absurd, don't stop, the shot must go on, the show must go on, "You are not important, get used to it," she said, but so much angst overwhelms him, tethered to a feathered fantasy, a nagging reminder of what once was, or could have been, refusing to believe it's too late to soar to former heights, yet grounded by time and gravity, trapped in a narrative, caged in a fabrication, "You're an actress, honey," says another, "you have no self-respect" and all actors are game, Keaton and Stone zoned-in, knowing the pain, pretending to not care or pretending to matter, failing to be authentic, acting over acting, meta-acting meta-fiction meta-filmed with a meta-critical message: yeah, we're all messed-up and meta-fµcked, but after shooting your nose to spite the ruse, by unmasking the unexpected virtue of ignorance, peeling off layers of pretense and self-importance, you just might find a momentary strain of pure, uncomplicated innocence.</p>
 
-It's not fair. I love this sh*t!</div>
+<p>It's not fair. I love this sh*t!</p></div>
     </div>
     </div>
     </div>
@@ -357,23 +524,34 @@ It's not fair. I love this sh*t!</div>
     <div class="modal" id="120467">
       <div class="modal-dialog">
         <div class="modal-content">
-          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
-            <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
-          </a>
+          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">CLOSE</a>
           <div class="cnt">
              <section class="top">
                 <div id="120467-synopsis" class="content active">
-    <div class="synopsis">
+    <div class="synopsis" style="background-image:url('http://image.tmdb.org/t/p/w780/3AZX2KB73kSza76h9O4bzdNeIac.jpg');">
+      <div class="bg"></div>
+      <div class="should-be-relative">
         <div class="title">The Grand Budapest Hotel</div>
-        <div class="overview">The Grand Budapest Hotel tells of a legendary concierge at a famous European hotel between the wars and his friendship with a young employee who becomes his trusted protégé. The story involves the theft and recovery of a priceless Renaissance painting, the battle for an enormous family fortune and the slow and then sudden upheavals that transformed Europe during the first half of the 20th century.</div>
-        <div class="poster">http://image.tmdb.org/t/p/w780/nX5XotM9yprCKarRH4fzOq1VM1J.jpg</div>
-        <div class="trailer">https://www.youtube.com/watch?v=HjV0D8RTQ5k</div>
-        <div class="genres"><ul><li>Comedy</li><li>Drama</li></ul></div>
-        <div class="score">7.9</div>
-        <div class="certification"></div>
-        <div class="year">2014</div>
-        <div class="backdrop">http://image.tmdb.org/t/p/w780/3AZX2KB73kSza76h9O4bzdNeIac.jpg</div>
-        <div class="runtime">99</div>
+        <section class="top-group">
+          <div class="score">7.9</div>
+          <div class="certification">R</div>
+          <div class="year">2014</div>
+          <div class="runtime">99 min</div>
+        </section>
+        <section class="hr"></section>
+        <div class="overview clearfix">
+          <div class="left">
+            <img class="poster" src="http://image.tmdb.org/t/p/w780/nX5XotM9yprCKarRH4fzOq1VM1J.jpg" width="100"/>
+          </div>
+          <div class="right">
+            <div style="min-height:100px">The Grand Budapest Hotel tells of a legendary concierge at a famous European hotel between the wars and his friendship with a young employee who becomes his trusted protégé. The story involves the theft and recovery of a priceless Renaissance painting, the battle for an enormous family fortune and the slow and then sudden upheavals that transformed Europe during the first half of the 20th century.</div>
+            <br/>
+            <div class="genres"><ul><li>Comedy</li><li>Drama</li></ul></div>
+            <!--genres-->
+          </div>
+        </div>
+        <!--.overview-->
+      </div>
     </div>
     </div>
                 <div id="120467-trailer" class="content trailer trailer-need-init">
@@ -382,10 +560,10 @@ It's not fair. I love this sh*t!</div>
                 <div id="120467-cast" class="content">
     <div class="cast-list">
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/95C56hfbvSA1UNvD433EzXviyV5.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Ralph Fiennes</div>
             <div class="actor-as">as</div>
             <div class="character-name">M. Gustave</div>
@@ -393,10 +571,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/m5WMX7TYk2VhsKkVDFRlBGpvr55.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Tony Revolori</div>
             <div class="actor-as">as</div>
             <div class="character-name">Zero Moustafa</div>
@@ -404,10 +582,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/luHava7pnJLEqGH05bqENXkOsKH.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">F. Murray Abraham</div>
             <div class="actor-as">as</div>
             <div class="character-name">Mr. Moustafa</div>
@@ -415,10 +593,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/yJlm02FobTETwbyaCTOOU26OfmS.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Mathieu Amalric</div>
             <div class="actor-as">as</div>
             <div class="character-name">Serge</div>
@@ -426,10 +604,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/zvMslH1C8xmEBpGgDsdzL797Rv.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Adrien Brody</div>
             <div class="actor-as">as</div>
             <div class="character-name">Dmitri</div>
@@ -437,10 +615,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/A1uyY0KbYSR8fk7Wkdbs2VfsBw1.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Willem Dafoe</div>
             <div class="actor-as">as</div>
             <div class="character-name">Jopling</div>
@@ -448,10 +626,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/iDW7y4R8cx4SZzWd8nN2gvL7My1.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Jeff Goldblum</div>
             <div class="actor-as">as</div>
             <div class="character-name">Kovacs</div>
@@ -459,10 +637,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/oP3A0NaJShM1BbI7WwMFui72b7O.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Harvey Keitel</div>
             <div class="actor-as">as</div>
             <div class="character-name">Ludwig</div>
@@ -470,10 +648,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/4077Cyuo1mw53u1gNjLyQkqeZN0.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Jude Law</div>
             <div class="actor-as">as</div>
             <div class="character-name">Young Writer</div>
@@ -481,10 +659,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/eb58HuFIrxS0zUmbmW4d8YXTbje.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Bill Murray</div>
             <div class="actor-as">as</div>
             <div class="character-name">M. Ivan</div>
@@ -492,10 +670,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/iUiePUAQKN4GY6jorH9m23cbVli.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Edward Norton</div>
             <div class="actor-as">as</div>
             <div class="character-name">Henckels</div>
@@ -503,10 +681,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/zR5yAg0cYxsLKaJH5JJHxdixnmW.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Saoirse Ronan</div>
             <div class="actor-as">as</div>
             <div class="character-name">Agatha</div>
@@ -514,10 +692,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/lWwNtkL8aQtmj7ttCyEbhgqF0oD.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Jason Schwartzman</div>
             <div class="actor-as">as</div>
             <div class="character-name">M. Jean</div>
@@ -525,10 +703,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/zeAhFa8SljdoRaojPWmQNHbqFDk.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Léa Seydoux</div>
             <div class="actor-as">as</div>
             <div class="character-name">Clotilde</div>
@@ -536,10 +714,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/eGNo9qwlunvAi4kCVUEFtQFM5X.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Tilda Swinton</div>
             <div class="actor-as">as</div>
             <div class="character-name">Madame D.</div>
@@ -547,10 +725,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/4mxZKgdem0sQ8hJd0Y7TREwq7TJ.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Tom Wilkinson</div>
             <div class="actor-as">as</div>
             <div class="character-name">Author</div>
@@ -558,10 +736,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/j7oYgvfDiO34VcFdSB7GhM2CSle.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Owen Wilson</div>
             <div class="actor-as">as</div>
             <div class="character-name">M. Chuck</div>
@@ -569,10 +747,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/g3AW6IIUEjmjCLTnS0Q5SfjcsUd.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Florian Lukas</div>
             <div class="actor-as">as</div>
             <div class="character-name">Pinky</div>
@@ -580,10 +758,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/3g7IKz8ycv0opDxmpoBxsQkUslU.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Bob Balaban</div>
             <div class="actor-as">as</div>
             <div class="character-name">M. Martin</div>
@@ -591,10 +769,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/hSjXJ172t9pgsfhtgonyjgYqdnj.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Fisher Stevens</div>
             <div class="actor-as">as</div>
             <div class="character-name">M. Robin</div>
@@ -602,10 +780,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/dvmEq92L4UwL20uO2BOQ8vnpPBP.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Wallace Wolodarsky</div>
             <div class="actor-as">as</div>
             <div class="character-name">M. Georges</div>
@@ -613,10 +791,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/608mxzVDmbQtWt3IedJyQ72FNg5.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Waris Ahluwalia</div>
             <div class="actor-as">as</div>
             <div class="character-name">M. Dino</div>
@@ -624,10 +802,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/cVw0dH0MKSu6ckFuqkbQK4rNcRI.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Larry Pine</div>
             <div class="actor-as">as</div>
             <div class="character-name">Mr. Mosher</div>
@@ -635,10 +813,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/9ryaqvn9VnqHE97stunzmyNEyaG.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Karl Markovics</div>
             <div class="actor-as">as</div>
             <div class="character-name">Wolf</div>
@@ -646,10 +824,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/t6zyNaYfALilSOAd0JHhdLmuKqk.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Volker Michalowski</div>
             <div class="actor-as">as</div>
             <div class="character-name">Gunther</div>
@@ -657,10 +835,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/o4IfD5CslMvI0WKUYzOHTKBuBCw.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Daniel Steiner</div>
             <div class="actor-as">as</div>
             <div class="character-name">Anatole</div>
@@ -668,10 +846,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/9EzFEZGguM2Z65KbF0IYcxfOSin.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Hendrik von Bültzingslöwen</div>
             <div class="actor-as">as</div>
             <div class="character-name">Ernst</div>
@@ -679,10 +857,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/ur06QfGJtQDONbLGeY11JsPNaf3.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Lisa Kreuzer</div>
             <div class="actor-as">as</div>
             <div class="character-name">Grande Dame</div>
@@ -690,10 +868,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/uV6zomMFl16asOzfSsivi75xhya.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Rainer Reiners</div>
             <div class="actor-as">as</div>
             <div class="character-name">Herr Mendl</div>
@@ -701,10 +879,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/lihOuAlrt6AjuGJ50oCrr6KYzjF.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Sabine Urig</div>
             <div class="actor-as">as</div>
             <div class="character-name">Laetizia</div>
@@ -712,10 +890,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/cfAceCdPOOTbCYwlUMxipklp9E7.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Claudia Jung</div>
             <div class="actor-as">as</div>
             <div class="character-name">Usherette</div>
@@ -723,10 +901,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/aFUN3nhSDBAbO49kAzlGE2VEw8x.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Matthias Matschke</div>
             <div class="actor-as">as</div>
             <div class="character-name">Prison Guard</div>
@@ -734,10 +912,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/4RzKSkq9F1x34UD9SjVC8xpPpXX.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Philipp Sonntag</div>
             <div class="actor-as">as</div>
             <div class="character-name">Monk</div>
@@ -745,10 +923,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/dt5DPEmk9VF23BSWxE3ZZmpcsGf.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Hans Martin Stier</div>
             <div class="actor-as">as</div>
             <div class="character-name">Monk</div>
@@ -758,11 +936,11 @@ It's not fair. I love this sh*t!</div>
     </div>
                 <div id="120467-review" class="content">
     <div class="review-list">
-        <div>
+        <div class="review-section-header">
             <span class="review-movie-name">The Grand Budapest Hotel</span>
             <span class="review-movie-year">(2014)</span>
         </div>
-        <div>It appears that The Movie DB has no reviews for this movie :(</div>
+        <div class="review-list-section">It appears that The Movie DB has no reviews for this movie :(</div>
     </div>
     </div>
              </section>
@@ -784,23 +962,34 @@ It's not fair. I love this sh*t!</div>
     <div class="modal" id="244786">
       <div class="modal-dialog">
         <div class="modal-content">
-          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
-            <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
-          </a>
+          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">CLOSE</a>
           <div class="cnt">
              <section class="top">
                 <div id="244786-synopsis" class="content active">
-    <div class="synopsis">
+    <div class="synopsis" style="background-image:url('http://image.tmdb.org/t/p/w780/qU8IpZlBNsTHNcApMHjtoQb4wp2.jpg');">
+      <div class="bg"></div>
+      <div class="should-be-relative">
         <div class="title">Whiplash</div>
-        <div class="overview">Under the direction of a ruthless instructor, a talented young drummer begins to pursue perfection at any cost, even his humanity.</div>
-        <div class="poster">http://image.tmdb.org/t/p/w780/lIv1QinFqz4dlp5U4lQ6HaiskOZ.jpg</div>
-        <div class="trailer">https://www.youtube.com/watch?v=7d_jQycdQGo</div>
-        <div class="genres"><ul><li>Drama</li><li>Music</li></ul></div>
-        <div class="score">8.6</div>
-        <div class="certification">R</div>
-        <div class="year">2014</div>
-        <div class="backdrop">http://image.tmdb.org/t/p/w780/qU8IpZlBNsTHNcApMHjtoQb4wp2.jpg</div>
-        <div class="runtime">105</div>
+        <section class="top-group">
+          <div class="score">8.6</div>
+          <div class="certification">R</div>
+          <div class="year">2014</div>
+          <div class="runtime">105 min</div>
+        </section>
+        <section class="hr"></section>
+        <div class="overview clearfix">
+          <div class="left">
+            <img class="poster" src="http://image.tmdb.org/t/p/w780/lIv1QinFqz4dlp5U4lQ6HaiskOZ.jpg" width="100"/>
+          </div>
+          <div class="right">
+            <div style="min-height:100px">Under the direction of a ruthless instructor, a talented young drummer begins to pursue perfection at any cost, even his humanity.</div>
+            <br/>
+            <div class="genres"><ul><li>Drama</li><li>Music</li></ul></div>
+            <!--genres-->
+          </div>
+        </div>
+        <!--.overview-->
+      </div>
     </div>
     </div>
                 <div id="244786-trailer" class="content trailer trailer-need-init">
@@ -809,10 +998,10 @@ It's not fair. I love this sh*t!</div>
                 <div id="244786-cast" class="content">
     <div class="cast-list">
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/BP15HuH50mYKjrj62rKKvTtclz.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Miles Teller</div>
             <div class="actor-as">as</div>
             <div class="character-name">Andrew Neimann</div>
@@ -820,10 +1009,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/f2D5wGCqF9t4xsXuaUtIusVKDc1.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">J.K. Simmons</div>
             <div class="actor-as">as</div>
             <div class="character-name">Terence Fletcher</div>
@@ -831,10 +1020,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/etSJcWeCKInA87G9jNrKUG7Ph4m.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Melissa Benoist</div>
             <div class="actor-as">as</div>
             <div class="character-name">Nicole</div>
@@ -842,10 +1031,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/su6KMYwfr4qVXRjlXi4u0h16Fxg.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Austin Stowell</div>
             <div class="actor-as">as</div>
             <div class="character-name">Ryan</div>
@@ -853,10 +1042,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/lqWVUUOBrv4ANxyvsv5aagc6CBq.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Jayson Blair</div>
             <div class="actor-as">as</div>
             <div class="character-name">Travis</div>
@@ -864,10 +1053,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="None" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Kavita Patil</div>
             <div class="actor-as">as</div>
             <div class="character-name">Sophie</div>
@@ -875,10 +1064,10 @@ It's not fair. I love this sh*t!</div>
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/fr53dQQrDGfETgbliCktwKqteRU.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Paul Reiser</div>
             <div class="actor-as">as</div>
             <div class="character-name">Mr. Neyman</div>
@@ -888,35 +1077,35 @@ It's not fair. I love this sh*t!</div>
     </div>
                 <div id="244786-review" class="content">
     <div class="review-list">
-        <div>
+        <div class="review-section-header">
             <span class="review-movie-name">Whiplash</span>
             <span class="review-movie-year">(2014)</span>
         </div>
-        <div>
+        <div class="review-list-section">
     <div class="review">
         <div class="review-item-header">
             <span>by</span>
             <span class="reviewer-name">MJM</span>
         </div>
-        <div class="review-item-content">DISGUSTING NONSENSE...
+        <div class="review-item-content"><p>DISGUSTING NONSENSE...</p>
 
-*** This review may contain spoilers ***
+<p>*** This review may contain spoilers ***</p>
 
-I find it very sad that so many people - including so-called professional reviewers - have rated this crap so highly. I did not walk out (although I was greatly tempted to do so) but saw it to the end. A total waste of time.
+<p>I find it very sad that so many people - including so-called professional reviewers - have rated this crap so highly. I did not walk out (although I was greatly tempted to do so) but saw it to the end. A total waste of time.</p>
 
-Here's what might spoil it for you, should you believe the BS that's being spread around this stinking pile of excrement: It could have actually been OK if it hadn't been so laughably impossibly ridiculous. Perhaps if it had been set in the fifties or the forties when people had much less developed consciousness of human rights? But even so... 
+<p>Here's what might spoil it for you, should you believe the BS that's being spread around this stinking pile of excrement: It could have actually been OK if it hadn't been so laughably impossibly ridiculous. Perhaps if it had been set in the fifties or the forties when people had much less developed consciousness of human rights? But even so... </p>
 
-I suppose the moral/lesson we are supposed to learn is... if you can't warp your students enough by abuse to force them to become great musicians then it is perfectly alright to discard or destroy them in the attempt. 
+<p>I suppose the moral/lesson we are supposed to learn is... if you can't warp your students enough by abuse to force them to become great musicians then it is perfectly alright to discard or destroy them in the attempt. </p>
 
-This glorified tyrant and bully can himself only produce music at a grade one level and so because he cannot 'do' he 'teaches?'
+<p>This glorified tyrant and bully can himself only produce music at a grade one level and so because he cannot 'do' he 'teaches?'</p>
 
-He does not teach, he does not inspire; he withholds approval, negatively reinforces and rules by fear, and is feared rather than respected. I would have a difficult time to point to a single (pedagogical) scene in the film that had any merit whatsoever or was worth watching for any reason. Maybe I should say that its evident popularity may be evidence that we are truly living in the end times... ha! 
+<p>He does not teach, he does not inspire; he withholds approval, negatively reinforces and rules by fear, and is feared rather than respected. I would have a difficult time to point to a single (pedagogical) scene in the film that had any merit whatsoever or was worth watching for any reason. Maybe I should say that its evident popularity may be evidence that we are truly living in the end times... ha! </p>
 
-See the film if you want to be current, but please decide for yourself from watching it and don't believe the hype about its 'genius' or 'brilliance.' It is not either of those things; it's a poorly written, sad joke. 
+<p>See the film if you want to be current, but please decide for yourself from watching it and don't believe the hype about its 'genius' or 'brilliance.' It is not either of those things; it's a poorly written, sad joke. </p>
 
-I would expect that those people who rate it so highly A) want to seem cool because 'it's about jazz' B) have never actually been in a teacher/student situation and therefore, can only imagine how its done C) see all the other positive reviews and so must follow the herd D) don't really know their ass from their elbow or E) thought the the actor had truly grown because in Spiderman he only yell, but it THIS one, he throws chairs.... or F) all of the above.
+<p>I would expect that those people who rate it so highly A) want to seem cool because 'it's about jazz' B) have never actually been in a teacher/student situation and therefore, can only imagine how its done C) see all the other positive reviews and so must follow the herd D) don't really know their ass from their elbow or E) thought the the actor had truly grown because in Spiderman he only yell, but it THIS one, he throws chairs.... or F) all of the above.</p>
 
-Save your money or see something uplifting instead rather than this horseshit.</div>
+<p>Save your money or see something uplifting instead rather than this horseshit.</p></div>
     </div>
     </div>
     </div>
@@ -940,23 +1129,34 @@ Save your money or see something uplifting instead rather than this horseshit.</
     <div class="modal" id="245891">
       <div class="modal-dialog">
         <div class="modal-content">
-          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
-            <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
-          </a>
+          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">CLOSE</a>
           <div class="cnt">
              <section class="top">
                 <div id="245891-synopsis" class="content active">
-    <div class="synopsis">
+    <div class="synopsis" style="background-image:url('http://image.tmdb.org/t/p/w780/mFb0ygcue4ITixDkdr7wm1Tdarx.jpg');">
+      <div class="bg"></div>
+      <div class="should-be-relative">
         <div class="title">John Wick</div>
-        <div class="overview">After the sudden death of his beloved wife, John Wick receives one last gift from her, a beagle puppy named Daisy, and a note imploring him not to forget how to love. But John's mourning is interrupted when his 1969 Boss Mustang catches the eye of sadistic thug Iosef Tarasov who breaks into his house and steals it, beating John unconscious in the process. Unwittingly, he has just reawakened one of the most brutal assassins the underworld has ever known.</div>
-        <div class="poster">http://image.tmdb.org/t/p/w780/sq2MmFv9sanl9PFMfbdaBLveSJ8.jpg</div>
-        <div class="trailer">https://www.youtube.com/watch?v=RllJtOw0USI</div>
-        <div class="genres"><ul><li>Action</li><li>Thriller</li></ul></div>
-        <div class="score">7.2</div>
-        <div class="certification">R</div>
-        <div class="year">2014</div>
-        <div class="backdrop">http://image.tmdb.org/t/p/w780/mFb0ygcue4ITixDkdr7wm1Tdarx.jpg</div>
-        <div class="runtime">101</div>
+        <section class="top-group">
+          <div class="score">7.2</div>
+          <div class="certification">R</div>
+          <div class="year">2014</div>
+          <div class="runtime">101 min</div>
+        </section>
+        <section class="hr"></section>
+        <div class="overview clearfix">
+          <div class="left">
+            <img class="poster" src="http://image.tmdb.org/t/p/w780/sq2MmFv9sanl9PFMfbdaBLveSJ8.jpg" width="100"/>
+          </div>
+          <div class="right">
+            <div style="min-height:100px">After the sudden death of his beloved wife, John Wick receives one last gift from her, a beagle puppy named Daisy, and a note imploring him not to forget how to love. But John's mourning is interrupted when his 1969 Boss Mustang catches the eye of sadistic thug Iosef Tarasov who breaks into his house and steals it, beating John unconscious in the process. Unwittingly, he has just reawakened one of the most brutal assassins the underworld has ever known.</div>
+            <br/>
+            <div class="genres"><ul><li>Action</li><li>Thriller</li></ul></div>
+            <!--genres-->
+          </div>
+        </div>
+        <!--.overview-->
+      </div>
     </div>
     </div>
                 <div id="245891-trailer" class="content trailer trailer-need-init">
@@ -965,10 +1165,10 @@ Save your money or see something uplifting instead rather than this horseshit.</
                 <div id="245891-cast" class="content">
     <div class="cast-list">
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/id1qIb7cZs2eQno90KsKwG8VLGN.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Keanu Reeves</div>
             <div class="actor-as">as</div>
             <div class="character-name">John Wick</div>
@@ -976,10 +1176,10 @@ Save your money or see something uplifting instead rather than this horseshit.</
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/bDjPDDiSna8FN5rqHdheg2wIYYo.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Michael Nyqvist</div>
             <div class="actor-as">as</div>
             <div class="character-name">Viggo Tarasov</div>
@@ -987,10 +1187,10 @@ Save your money or see something uplifting instead rather than this horseshit.</
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/4q6yzSMi8Q5XeIn5A1yUD1tEfwq.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Alfie Allen</div>
             <div class="actor-as">as</div>
             <div class="character-name">Iosef Tarasov</div>
@@ -998,10 +1198,10 @@ Save your money or see something uplifting instead rather than this horseshit.</
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/A1uyY0KbYSR8fk7Wkdbs2VfsBw1.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Willem Dafoe</div>
             <div class="actor-as">as</div>
             <div class="character-name">Marcus</div>
@@ -1009,10 +1209,10 @@ Save your money or see something uplifting instead rather than this horseshit.</
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/l6yaRWtG1yjkdKo4oGk2SMBx64x.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Dean Winters</div>
             <div class="actor-as">as</div>
             <div class="character-name">Avi</div>
@@ -1020,10 +1220,10 @@ Save your money or see something uplifting instead rather than this horseshit.</
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/iaJuVBKWN9G532b6sWX5SwSt18d.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Adrianne Palicki</div>
             <div class="actor-as">as</div>
             <div class="character-name">Ms. Perkins</div>
@@ -1031,10 +1231,10 @@ Save your money or see something uplifting instead rather than this horseshit.</
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/oBNeyaNaZ5hoh84XISKWt4RteLV.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Omer Barnea</div>
             <div class="actor-as">as</div>
             <div class="character-name">Gregori</div>
@@ -1042,10 +1242,10 @@ Save your money or see something uplifting instead rather than this horseshit.</
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/mNmFB7OxcwLIQm3ovnHFL0PNtsN.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Toby Leonard Moore</div>
             <div class="actor-as">as</div>
             <div class="character-name">Victor</div>
@@ -1053,10 +1253,10 @@ Save your money or see something uplifting instead rather than this horseshit.</
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/gsIWvByH4lzQdTgMswQWqiAQOql.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Daniel Bernhardt</div>
             <div class="actor-as">as</div>
             <div class="character-name">Kirill</div>
@@ -1064,10 +1264,10 @@ Save your money or see something uplifting instead rather than this horseshit.</
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/sNdD2Cos4aecowtWPpd0hcM8izY.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Bridget Moynahan</div>
             <div class="actor-as">as</div>
             <div class="character-name">Helen Wick</div>
@@ -1075,10 +1275,10 @@ Save your money or see something uplifting instead rather than this horseshit.</
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/wlcCiSjmcXHJCG7WATmbwYIRnmX.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">John Leguizamo</div>
             <div class="actor-as">as</div>
             <div class="character-name">Aureilo</div>
@@ -1086,10 +1286,10 @@ Save your money or see something uplifting instead rather than this horseshit.</
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/pY9ud4BJwHekNiO4MMItPbgkdAy.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Ian McShane</div>
             <div class="actor-as">as</div>
             <div class="character-name">Winston</div>
@@ -1097,10 +1297,10 @@ Save your money or see something uplifting instead rather than this horseshit.</
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/uzVNdcPD2drMUKmT73xuKKYXBzB.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Bridget Regan</div>
             <div class="actor-as">as</div>
             <div class="character-name">Addy</div>
@@ -1108,10 +1308,10 @@ Save your money or see something uplifting instead rather than this horseshit.</
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/5t4j7zvsjG5UyVxBJzly5OUMR3x.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Lance Reddick</div>
             <div class="actor-as">as</div>
             <div class="character-name">Hotel Manager / Charon</div>
@@ -1119,10 +1319,10 @@ Save your money or see something uplifting instead rather than this horseshit.</
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/ujvmeyBvEJ7gkvww0OYDBlbxOTT.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">David Patrick Kelly</div>
             <div class="actor-as">as</div>
             <div class="character-name">Charlie</div>
@@ -1130,10 +1330,10 @@ Save your money or see something uplifting instead rather than this horseshit.</
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/7a3OTcJlncY32LDvdTjLS6bTMxh.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Clarke Peters</div>
             <div class="actor-as">as</div>
             <div class="character-name">Harry</div>
@@ -1141,10 +1341,10 @@ Save your money or see something uplifting instead rather than this horseshit.</
     </div>
     
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="http://image.tmdb.org/t/p/w185/mmbhdSwlmfBj9LCH9I4QoPgjDN0.jpg" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">Kevin Nash</div>
             <div class="actor-as">as</div>
             <div class="character-name">Francis</div>
@@ -1154,11 +1354,699 @@ Save your money or see something uplifting instead rather than this horseshit.</
     </div>
                 <div id="245891-review" class="content">
     <div class="review-list">
-        <div>
+        <div class="review-section-header">
             <span class="review-movie-name">John Wick</span>
             <span class="review-movie-year">(2014)</span>
         </div>
-        <div>It appears that The Movie DB has no reviews for this movie :(</div>
+        <div class="review-list-section">It appears that The Movie DB has no reviews for this movie :(</div>
+    </div>
+    </div>
+             </section>
+             <section class="bottom">
+               <nav class="menu">
+                 <ul>
+                   <li><a class="active" href="#" data-content="synopsis">SYNOPSIS</a></li>
+                   <li><a                href="#" data-content="trailer">TRAILER</a></li>
+                   <li><a                href="#" data-content="cast">CAST</a></li>
+                   <li><a                href="#" data-content="review">REVIEW</a></li>
+                 </ul>
+               </nav>
+             </section>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="modal" id="210577">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">CLOSE</a>
+          <div class="cnt">
+             <section class="top">
+                <div id="210577-synopsis" class="content active">
+    <div class="synopsis" style="background-image:url('http://image.tmdb.org/t/p/w780/bt6DhdALyhf90gReozoQ0y3R3vZ.jpg');">
+      <div class="bg"></div>
+      <div class="should-be-relative">
+        <div class="title">Gone Girl</div>
+        <section class="top-group">
+          <div class="score">8.1</div>
+          <div class="certification">R</div>
+          <div class="year">2014</div>
+          <div class="runtime">145 min</div>
+        </section>
+        <section class="hr"></section>
+        <div class="overview clearfix">
+          <div class="left">
+            <img class="poster" src="http://image.tmdb.org/t/p/w780/gdiLTof3rbPDAmPaCf4g6op46bj.jpg" width="100"/>
+          </div>
+          <div class="right">
+            <div style="min-height:100px">With his wife's disappearance having become the focus of an intense media circus, a man sees the spotlight turned on him when it's suspected that he may not be innocent.</div>
+            <br/>
+            <div class="genres"><ul><li>Drama</li><li>Mystery</li><li>Thriller</li></ul></div>
+            <!--genres-->
+          </div>
+        </div>
+        <!--.overview-->
+      </div>
+    </div>
+    </div>
+                <div id="210577-trailer" class="content trailer trailer-need-init">
+    <div class="scale-media trailer-video" id="210577-trailer-video-container" data-content="Ym3LB0lOJ0o"></div>
+    </div>
+                <div id="210577-cast" class="content">
+    <div class="cast-list">
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/yXtyygmSGtrwTfEmr6g2WgHFJIZ.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Ben Affleck</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Nick Dunne</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/70C0zcKqBdiLskAU9FNFtsrpr8m.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Rosamund Pike</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Amy Dunne</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/fdBvkrv4lSKZ97eDLpmjlK1Tnbx.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Tyler Perry</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Tanner Bolt</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/v5sCdjk0zxwSdFT4kmlVwu6M3Hb.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Neil Patrick Harris</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Desi Collins</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/rRVORUpcHPO9MqgK26H1JWwMZLn.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Missi Pyle</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Ellen Abbott</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/vndJENwYkWunTNEuRtAskVifOu3.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Patrick Fugit</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Detective Jim Gilpin</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/yIXBljS46WXvRk2gma3ravVBBgU.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Kim Dickens</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Detective Rhonda Boney</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/oenWJccldjsMdaRwOghewSXJtYi.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Casey Wilson</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Noelle Hawthorne</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/1BGldxkKa8p5xPG105QNSVrF4hg.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Kathleen Rose Perkins</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Shawna Kelly</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/fBymmBzKuF4rphytsRiT0MA7EjM.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Emily Ratajkowski</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Andie Hardy</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/5QovJj55flMlh4rZHauomSIrU1k.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Scoot McNairy</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Tommy</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/hI9D0u1mdFm9TmRml0fuOE1lsMa.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Boyd Holbrook</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Jeff</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/lhYAzJYPHBrzejDZgnRt0yJe0L9.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Lola Kirke</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Greta</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/lOHLdgQe1DXomdLzAIbxL7BF89M.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Carrie Coon</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Margo Dunne</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/4N8MGB6oau5UQ0olJpYZi6wgmJZ.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Sela Ward</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Sharon Schieber</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/sE16s5VE42RuTJvRZA5wuDzTDYB.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Lee Norris</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Police Officer</div>
+        </div>
+    </div>
+    </div>
+    </div>
+                <div id="210577-review" class="content">
+    <div class="review-list">
+        <div class="review-section-header">
+            <span class="review-movie-name">Gone Girl</span>
+            <span class="review-movie-year">(2014)</span>
+        </div>
+        <div class="review-list-section">It appears that The Movie DB has no reviews for this movie :(</div>
+    </div>
+    </div>
+             </section>
+             <section class="bottom">
+               <nav class="menu">
+                 <ul>
+                   <li><a class="active" href="#" data-content="synopsis">SYNOPSIS</a></li>
+                   <li><a                href="#" data-content="trailer">TRAILER</a></li>
+                   <li><a                href="#" data-content="cast">CAST</a></li>
+                   <li><a                href="#" data-content="review">REVIEW</a></li>
+                 </ul>
+               </nav>
+             </section>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="modal" id="122917">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">CLOSE</a>
+          <div class="cnt">
+             <section class="top">
+                <div id="122917-synopsis" class="content active">
+    <div class="synopsis" style="background-image:url('http://image.tmdb.org/t/p/w780/qhH3GyIfAnGv1pjdV3mw03qAilg.jpg');">
+      <div class="bg"></div>
+      <div class="should-be-relative">
+        <div class="title">The Hobbit: The Battle of the Five Armies</div>
+        <section class="top-group">
+          <div class="score">7.5</div>
+          <div class="certification">PG-13</div>
+          <div class="year">2014</div>
+          <div class="runtime">144 min</div>
+        </section>
+        <section class="hr"></section>
+        <div class="overview clearfix">
+          <div class="left">
+            <img class="poster" src="http://image.tmdb.org/t/p/w780/ehObfVePRIGEfHaYKLG0fgMJoCB.jpg" width="100"/>
+          </div>
+          <div class="right">
+            <div style="min-height:100px">Mere seconds after the events of "Desolation", Bilbo and Company continue to claim a mountain of treasure that was guarded long ago: But with Gandalf the Grey also facing some formidable foes of his own, the Hobbit is outmatched when the brutal army of orcs led by Azog the Defiler returns. But with other armies such as the elves and the men of Lake-Town, which are unsure to be trusted, are put to the ultimate test when Smaug's wrath, Azog's sheer strength, and Sauron's force of complete ends attack. All in all, the trusted armies have two choices: unite or die. But even worse, Bilbo gets put on a knife edge and finds himself fighting with Hobbit warfare with all of his might for his dwarf-friends, as the hope for Middle-Earth is all put in Bilbo's hands. The one "precious" thing to end it all.</div>
+            <br/>
+            <div class="genres"><ul><li>Adventure</li><li>Fantasy</li></ul></div>
+            <!--genres-->
+          </div>
+        </div>
+        <!--.overview-->
+      </div>
+    </div>
+    </div>
+                <div id="122917-trailer" class="content trailer trailer-need-init">
+    <div class="scale-media trailer-video" id="122917-trailer-video-container" data-content="ZSzeFFsKEt4"></div>
+    </div>
+                <div id="122917-cast" class="content">
+    <div class="cast-list">
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/ashlWz2KDQTbo8NPUbVOwcB3zXJ.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Martin Freeman</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Bilbo Baggins</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/c51mP46oPgAgFf7bFWVHlScZynM.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Ian McKellen</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Gandalf</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/nxA9EUBaipqb68ZbD5aGcjlT6zE.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Richard Armitage</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Thorin Oakenshield</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/lJFfJeCKRD1h9cvBK6Dla03B42J.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Aidan Turner</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Kili</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/vq90ECKinICxJYYZpbga4pMwch.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Orlando Bloom</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Legolas</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/8mU0TgK5z15yXGDatbU9O51Ir5g.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">John Bell</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Bain</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/lSXxMaASqm9TfnKaDNaxolEOW3A.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Dean O'Gorman</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Fili</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/93N1awB9SAUgXTejEFCXUDfi6hP.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Lee Pace</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Thranduil</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/u4HDP1pGDV4gQZsBgYHKdgfICZz.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Benedict Cumberbatch</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">The Necromancer</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/1d31uDYub8TaLOPWfgX78OotduD.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Luke Evans</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Bard</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/X3CMrI6lkzLdS5ZQqQWeRJkAGU.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Cate Blanchett</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Galadriel</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/c4fB3WAS7jN78rihw2kB81v6sez.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Elijah Wood</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Frodo</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/3DKJSeTucd7krnxXkwcir6PgT88.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Hugo Weaving</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Elrond</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/r9P5l3CgpqpEr4ATbv8AMFqOiF.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Manu Bennett</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Azog</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/3Pj0Zt1x9fwBrGGLe6DRGj8Ymmx.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Christopher Lee</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Saruman</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/7e1rVdJah2r0DaMpovrhbR2dHPS.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Billy Connolly</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Dain</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/tEP4b5bTpSxJUHOYItg5xrZh43F.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Bret McKenzie</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Lindir</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/uq6Wx7PaLgaw969avH7tLHnSb0Q.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Ian Holm</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Old Bilbo</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/n9NorD6bQfFJlW4IcJ6WoGiAKcR.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">James Nesbitt</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Bofur</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/eqxR4TGXcY0vLLqR5RkfgVXBgrS.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Graham McTavish</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Dwalin</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/xsRPZsLqFfQENGyxKVqAlw2cYai.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Conan Stevens</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Bolg</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/hgM7jEkkwI0HHx3K44UE48gBbfa.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Sylvester McCoy</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Radagast</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/aS2ZLIOYsmL8UQscHEOOFMERI4F.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Ken Stott</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Balin</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/yr557miX4IwMLqPfLQs3kWQZTMq.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Mikael Persbrandt</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Beorn</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/jcsOAVVLyAnJpnZRAWoGtuI4nlk.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Peter Hambleton</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Gloin</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/54iHvIA8ZTNfvKpb2ZxRY73A5MZ.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Adam Brown</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Ori</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/xfEiaREY2RJQosyGnGuGDcWONsX.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Jed Brophy</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Nori</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/pgSkxH8LeJhNWKwG3D5690ZTLbs.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">William Kircher</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Bifur</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/xGKavu5mcGBOQMSawk9voZeEzN6.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Stephen Hunter</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Bombur</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/qNBpe4BKgKrLF6yZrCtCjFMRFJv.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Mark Hadlow</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Dori</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/k6JoHrkyGMH0b13yZxtLKtW1npz.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">John Callen</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Ori</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/fFn1u2WnYuRMBuCxxW661ppttsk.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Ryan Gage</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Alfrid</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="None" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Robin Kerr</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Elros</div>
+        </div>
+    </div>
+    
+    <div class="cast-list-actor clearfix">
+        <div class="actor-avatar-panel">
+            <img class="avatar" src="http://image.tmdb.org/t/p/w185/lsXb0Qt9WyYDJUdON26vmtKVkE6.jpg" width="185">
+        </div>
+        <div class="actor-info-panel">
+            <div class="actor-name">Evangeline Lilly</div>
+            <div class="actor-as">as</div>
+            <div class="character-name">Tauriel</div>
+        </div>
+    </div>
+    </div>
+    </div>
+                <div id="122917-review" class="content">
+    <div class="review-list">
+        <div class="review-section-header">
+            <span class="review-movie-name">The Hobbit: The Battle of the Five Armies</span>
+            <span class="review-movie-year">(2014)</span>
+        </div>
+        <div class="review-list-section">
+    <div class="review">
+        <div class="review-item-header">
+            <span>by</span>
+            <span class="reviewer-name">Andres Gomez</span>
+        </div>
+        <div class="review-item-content"><p>As there was not much more to be told from the end of the previous movie, just assist to more than 2h of continuous battle.</p>
+
+<p>Quite pointless, but you may enjoy the action if that is what you were looking for ...</p></div>
+    </div>
+    </div>
     </div>
     </div>
              </section>
@@ -1254,7 +2142,7 @@ Save your money or see something uplifting instead rather than this horseshit.</
       </div>
     </div>
     <div class="container">
-      
+        <div class="row">
 <div class="col-md-6 col-lg-4 movie-tile text-center" data-toggle="modal" data-target="#194662">
     <img src="http://image.tmdb.org/t/p/w780/rSZs93P0LLxqlVEbI001UKoeCQC.jpg" width="220" height="342">
     <h2>Birdman</h2>
@@ -1275,6 +2163,16 @@ Save your money or see something uplifting instead rather than this horseshit.</
     <h2>John Wick</h2>
 </div>
 
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-toggle="modal" data-target="#210577">
+    <img src="http://image.tmdb.org/t/p/w780/gdiLTof3rbPDAmPaCf4g6op46bj.jpg" width="220" height="342">
+    <h2>Gone Girl</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-toggle="modal" data-target="#122917">
+    <img src="http://image.tmdb.org/t/p/w780/ehObfVePRIGEfHaYKLG0fgMJoCB.jpg" width="220" height="342">
+    <h2>The Hobbit: The Battle of the Five Armies</h2>
+</div>
+</div>
     </div>
   </body>
 </html>

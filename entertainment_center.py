@@ -42,7 +42,8 @@ galaxy = media.Movie("Guardians of the Galaxy",
 
 def extra_credit_version():
     moviedb_api = movie_service.TheMovieDBAPI(api_key='12f10a5ecdbefb9906e99116ad3abbc9')
-    favorite_movies = ['Birdman', 'The Grand Budapest Hotel', 'Whiplash', 'John Wick']
+    favorite_movies = ['Birdman', 'The Grand Budapest Hotel', 'Whiplash', 'John Wick', 'Gone Girl',
+                       'The Hobbit: The Battle of the Five Armies']
     # favorite_movies = ['Birdman']
 
     def save_cache(movie_name, movie_json):
