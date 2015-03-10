@@ -70,10 +70,9 @@ class ExtraCredit(object):
             background-color:#424242;
         }
 
-
         .modal-dialog {
           width: 80%;
-          height: 80%;
+          height: 90%;
           margin-right: auto;
           margin-left: auto;
           margin-top: 10%;
@@ -205,35 +204,29 @@ class ExtraCredit(object):
         }
 
         .synopsis .top-group > div {
-          display: inline-block;
+          display:inline-block;
+          color:fff;
+          line-height: 40px;
+          margin: 0 10px;
           text-align: center;
-          color: #fff;
-          font-size: 14px;
+          font-size:16px;
         }
 
         .synopsis .top-group .score {
-          background: #8BC34A;
-          border-radius: 100%;
-          width: 30px;
-          height: 30px;
-          font-size: 14px;
-          line-height: 30px;
+          background:#8BC34A;
+          font-weight:bold;
+          border-radius:100%;
+          width:40px;
+          text-align: center;
         }
 
         .synopsis .top-group .certification {
-          border: 1px solid #fff;
-          padding: 2px 10px;
-          border-radius: 3px;
-          font-size: 14px;
-          line-height: 24px;
-          height: 24px;
-          margin-left: 5px
-        }
-
-        .synopsis .top-group .year {
-          color: #eee;
-          font-size: 14px;
-          margin-left: 10px
+          padding:0 10px;
+          line-height: 21px;
+          font-size:13px;
+          font-weight:bold;
+          border-radius:3px;
+          border:solid 1px white;
         }
 
         .synopsis .hr {
@@ -253,7 +246,7 @@ class ExtraCredit(object):
         .synopsis .overview .right {
           float: left;
           margin-left: 20px;
-          width: 400px;
+          width: 600px;
           display: inline-block;
           color: #E9E9E9;
           line-height: 22px;
@@ -261,7 +254,7 @@ class ExtraCredit(object):
 
         .synopsis .overview .right .genres ul {
           padding: 0;
-          margin-bottom:20px;
+          margin-bottom:40px;
         }
 
         .synopsis .overview .right .genres li {
@@ -436,7 +429,7 @@ class ExtraCredit(object):
           <div class="score">{score}</div>
           <div class="certification">{certification}</div>
           <div class="year">{year}</div>
-          <div class="runtime">{runtime}</div>
+          <div class="runtime">{runtime} min</div>
         </section>
         <section class="hr"></section>
         <div class="overview clearfix">
