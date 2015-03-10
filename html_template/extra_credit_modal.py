@@ -92,10 +92,13 @@ class ExtraCredit(object):
           height:100%;
           width:100%;
           background:black;
+          padding-bottom:50px;
         }
         .cnt .top .content {
           display:none;
           color: #fff;
+          width:100%;
+          height:100%;
         }
         .cnt .top .content.active {
           display:block;
@@ -142,30 +145,37 @@ class ExtraCredit(object):
         .cnt .bottom .menu a:hover.active {
           color:#666;
         }
+        .scale-media {
+            width:100%;
+            height:100%;
+            position:relative;
+        }
         .scale-media iframe {
             border: none;
             height: 100%;
-            position: absolute;
             width: 100%;
+            position: absolute;
             left: 0;
             top: 0;
             background-color: black;
-            padding-bottom:50px;
         }
         .cast-list {
             height: 100%;
-            width: 100%;
-            position: absolute;
-            padding-bottom: 50px;
             overflow-y: scroll;
         }
         .cast-list-actor {
             padding:20px;
             border-bottom:solid 1px #9E9E9E;
         }
-        .actor-left-panel {
+        .cast-list-actor:last-child{
+            border-bottom:none;
+        }
+        .actor-avatar-panel {
             float:left;
             margin-right:15px;
+        }
+        .actor-info-panel {
+            float:left;
         }
         .actor-name {
             font-size:30px;
@@ -175,10 +185,21 @@ class ExtraCredit(object):
         }
         .review-list {
             height: 100%;
-            width: 100%;
             padding:20px;
-            padding-bottom: 50px;
             overflow-y: scroll;
+        }
+        .review-section-header {
+            margin-bottom:10px;
+        }
+        .review-movie-name {
+            font-size:30px;
+        }
+        .review-movie-year {
+            display:inline-block;
+            margin-left:5px;
+        }
+        .review-item-header {
+            margin-bottom:10px;
         }
     </style>
     '''
@@ -302,10 +323,10 @@ class ExtraCredit(object):
 
     actor_template = u'''
     <div class="cast-list-actor clearfix">
-        <div class="actor-left-panel">
+        <div class="actor-avatar-panel">
             <img class="avatar" src="{avatar_url}" width="185">
         </div>
-        <div class="actor-right-panel">
+        <div class="actor-info-panel">
             <div class="actor-name">{actor_name}</div>
             <div class="actor-as">as</div>
             <div class="character-name">{character_name}</div>
@@ -323,11 +344,11 @@ class ExtraCredit(object):
 
     review_list_template = u'''
     <div class="review-list">
-        <div>
+        <div class="review-section-header">
             <span class="review-movie-name">{movie_name}</span>
             <span class="review-movie-year">({movie_year})</span>
         </div>
-        <div>{review_list}</div>
+        <div class="review-list-section">{review_list}</div>
     </div>
     '''
 
