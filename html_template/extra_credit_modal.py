@@ -32,10 +32,12 @@ class ExtraCredit(object):
         synopsis = self.create_synopsis_html(moviedb_movie)
         trailer = self.create_trailer_html(moviedb_movie)
         cast = self.create_cast_html(moviedb_movie)
+        review = self.create_review_html(moviedb_movie)
         return ExtraCredit.modal_template.format(movie_id=moviedb_movie.movie_id,
                                                  synopsis_tab=synopsis,
                                                  trailer_tab=trailer,
-                                                 cast_tab=cast)
+                                                 cast_tab=cast,
+                                                 review_tab=review)
 
     def create_modal_collection_html(self):
         modals_html = ''
@@ -171,6 +173,13 @@ class ExtraCredit(object):
         .actor-as {
             margin: 10px 0;
         }
+        .review-list {
+            height: 100%;
+            width: 100%;
+            padding:20px;
+            padding-bottom: 50px;
+            overflow-y: scroll;
+        }
     </style>
     '''
 
@@ -186,7 +195,7 @@ class ExtraCredit(object):
                 <div id="{movie_id}-synopsis" class="content active">{synopsis_tab}</div>
                 <div id="{movie_id}-trailer" class="content trailer trailer-need-init">{trailer_tab}</div>
                 <div id="{movie_id}-cast" class="content">{cast_tab}</div>
-                <div id="{movie_id}-review" class="content">review</div>
+                <div id="{movie_id}-review" class="content">{review_tab}</div>
              </section>
              <section class="bottom">
                <nav class="menu">
@@ -311,4 +320,35 @@ class ExtraCredit(object):
                                                         character_name=cast['character'],
                                                         actor_name=cast['name'])
         return ExtraCredit.cast_template.format(actor_list=actors)
+
+    review_list_template = u'''
+    <div class="review-list">
+        <div>
+            <span class="review-movie-name">{movie_name}</span>
+            <span class="review-movie-year">({movie_year})</span>
+        </div>
+        <div>{review_list}</div>
+    </div>
+    '''
+
+    review_template = u'''
+    <div class="review">
+        <div class="review-item-header">
+            <span>by</span>
+            <span class="reviewer-name">{reviewer_name}</span>
+        </div>
+        <div class="review-item-content">{review_content}</div>
+    </div>
+    '''
+
+    def create_review_html(self, moviedb_movie):
+        reviews = ''
+        for review in moviedb_movie.moviedb_json['reviews']['results']:
+            reviews += ExtraCredit.review_template.format(reviewer_name=review['author'],
+                                                          review_content=review['content'])
+        if reviews == '':
+            reviews = 'It appears that The Movie DB has no reviews for this movie :('
+        return ExtraCredit.review_list_template.format(movie_name=moviedb_movie.title,
+                                                       movie_year=moviedb_movie.year,
+                                                       review_list=reviews)
 
