@@ -59,6 +59,7 @@ class ExtraCredit(object):
     style_template = u'''
     <style>
 
+        /* https://css-tricks.com/custom-scrollbars-in-webkit/ */
         .modal-dialog ::-webkit-scrollbar {
             width: 12px;
         }
