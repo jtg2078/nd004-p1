@@ -1,4 +1,5 @@
 # coding: utf-8
+import re
 
 class ExtraCredit(object):
     def __init__(self, moviedb_movies):
@@ -498,10 +499,17 @@ class ExtraCredit(object):
     '''
 
     def create_review_html(self, moviedb_movie):
+
+        _paragraph_re = re.compile(r'(?:\r\n|\r|\n){2,}')
+
+        def nl2br(content):
+            # from http://flask.pocoo.org/snippets/28/
+            return u'\n\n'.join(u'<p>%s</p>' % p.replace('\n', '<br>\n') for p in _paragraph_re.split(content))
+
         reviews = ''
         for review in moviedb_movie.moviedb_json['reviews']['results']:
             reviews += ExtraCredit.review_template.format(reviewer_name=review['author'],
-                                                          review_content=review['content'])
+                                                          review_content=nl2br(review['content']))
         if reviews == '':
             reviews = 'It appears that The Movie DB has no reviews for this movie :('
         return ExtraCredit.review_list_template.format(movie_name=moviedb_movie.title,
