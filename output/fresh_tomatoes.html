@@ -40,6 +40,20 @@
     <div id="extraCreditModals">
         
     <style>
+
+        .modal-dialog ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        .modal-dialog ::-webkit-scrollbar-track {
+            background-color:#191717;
+        }
+
+        .modal-dialog ::-webkit-scrollbar-thumb {
+            background-color:#424242;
+        }
+
+
         .modal-dialog {
           width: 80%;
           height: 80%;
@@ -128,6 +142,121 @@
         .cnt .bottom .menu a:hover.active {
           color:#666;
         }
+
+        .synopsis {
+          font-family: 'Open Sans', sans-serif;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: top center;
+          padding-left:20px;
+          position: relative;
+          width:100%;
+          height:100%;
+        }
+
+        .synopsis .bg {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          left: 0;
+          top: 0;
+          background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 100%); /* FF3.6+ */
+          background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.65))); /* Chrome,Safari4+ */
+          background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 100%); /* Chrome10+,Safari5.1+ */
+          background: -o-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 100%); /* Opera 11.10+ */
+          background: -ms-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 100%); /* IE10+ */
+          background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 100%); /* W3C */
+          filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#a6000000', GradientType=0); /* IE6-9 */
+        }
+
+        .synopsis .should-be-relative {
+          position: relative;
+          width:100%;
+          height:100%;
+          overflow-y:scroll;
+        }
+
+        .synopsis .title {
+          font-size: 60px;
+          color: #fff;
+          margin: 60px 0 10px 0;
+
+        }
+
+        .synopsis .top-group {
+
+        }
+
+        .synopsis .top-group > div {
+          display: inline-block;
+          text-align: center;
+          color: #fff;
+          font-size: 14px;
+        }
+
+        .synopsis .top-group .score {
+          background: #8BC34A;
+          border-radius: 100%;
+          width: 30px;
+          height: 30px;
+          font-size: 14px;
+          line-height: 30px;
+        }
+
+        .synopsis .top-group .certification {
+          border: 1px solid #fff;
+          padding: 2px 10px;
+          border-radius: 3px;
+          font-size: 14px;
+          line-height: 24px;
+          height: 24px;
+          margin-left: 5px
+        }
+
+        .synopsis .top-group .year {
+          color: #eee;
+          font-size: 14px;
+          margin-left: 10px
+        }
+
+        .synopsis .hr {
+          border-bottom: 1px solid rgba(238, 238, 238, 0.33);
+          margin: 20px auto 40px auto;
+        }
+
+        .synopsis .overview {
+
+        }
+
+        .synopsis .overview .left {
+          float: left;
+          width: 100px;
+        }
+
+        .synopsis .overview .right {
+          float: left;
+          margin-left: 20px;
+          width: 400px;
+          display: inline-block;
+          color: #E9E9E9;
+          line-height: 22px;
+        }
+
+        .synopsis .overview .right .genres ul {
+          padding: 0;
+          margin-bottom:20px;
+        }
+
+        .synopsis .overview .right .genres li {
+          list-style: none;
+          display: inline-block;
+          border: 1px solid #eee;
+          padding: 2px 10px;
+          margin-right: 10px;
+          border-radius: 3px;
+        }
+
+
         .scale-media {
             width:100%;
             height:100%;
@@ -196,17 +325,30 @@
           <div class="cnt">
              <section class="top">
                 <div id="194662-synopsis" class="content active">
-    <div class="synopsis">
+    <div class="synopsis" style="background-image:url('http://image.tmdb.org/t/p/w780/AsJVim0Hk3KbQPbfjyijfjqmaoZ.jpg');">
+      <div class="bg"></div>
+      <div class="should-be-relative">
         <div class="title">Birdman</div>
-        <div class="overview">A fading actor best known for his portrayal of a popular superhero attempts to mount a comeback by appearing in a Broadway play. As opening night approaches, his attempts to become more altruistic, rebuild his career, and reconnect with friends and family prove more difficult than expected.</div>
-        <div class="poster">http://image.tmdb.org/t/p/w780/rSZs93P0LLxqlVEbI001UKoeCQC.jpg</div>
-        <div class="trailer">https://www.youtube.com/watch?v=2bqh-UCY6Zg</div>
-        <div class="genres"><ul><li>Comedy</li><li>Drama</li></ul></div>
-        <div class="score">7.8</div>
-        <div class="certification">R</div>
-        <div class="year">2014</div>
-        <div class="backdrop">http://image.tmdb.org/t/p/w780/AsJVim0Hk3KbQPbfjyijfjqmaoZ.jpg</div>
-        <div class="runtime">119</div>
+        <section class="top-group">
+          <div class="score">7.8</div>
+          <div class="certification">R</div>
+          <div class="year">2014</div>
+          <div class="runtime">119</div>
+        </section>
+        <section class="hr"></section>
+        <div class="overview clearfix">
+          <div class="left">
+            <img class="poster" src="http://image.tmdb.org/t/p/w780/rSZs93P0LLxqlVEbI001UKoeCQC.jpg" width="100"/>
+          </div>
+          <div class="right">
+            <div style="min-height:100px">A fading actor best known for his portrayal of a popular superhero attempts to mount a comeback by appearing in a Broadway play. As opening night approaches, his attempts to become more altruistic, rebuild his career, and reconnect with friends and family prove more difficult than expected.</div>
+            <br/>
+            <div class="genres"><ul><li>Comedy</li><li>Drama</li></ul></div>
+            <!--genres-->
+          </div>
+        </div>
+        <!--.overview-->
+      </div>
     </div>
     </div>
                 <div id="194662-trailer" class="content trailer trailer-need-init">
@@ -384,17 +526,30 @@ It's not fair. I love this sh*t!</div>
           <div class="cnt">
              <section class="top">
                 <div id="120467-synopsis" class="content active">
-    <div class="synopsis">
+    <div class="synopsis" style="background-image:url('http://image.tmdb.org/t/p/w780/3AZX2KB73kSza76h9O4bzdNeIac.jpg');">
+      <div class="bg"></div>
+      <div class="should-be-relative">
         <div class="title">The Grand Budapest Hotel</div>
-        <div class="overview">The Grand Budapest Hotel tells of a legendary concierge at a famous European hotel between the wars and his friendship with a young employee who becomes his trusted protégé. The story involves the theft and recovery of a priceless Renaissance painting, the battle for an enormous family fortune and the slow and then sudden upheavals that transformed Europe during the first half of the 20th century.</div>
-        <div class="poster">http://image.tmdb.org/t/p/w780/nX5XotM9yprCKarRH4fzOq1VM1J.jpg</div>
-        <div class="trailer">https://www.youtube.com/watch?v=HjV0D8RTQ5k</div>
-        <div class="genres"><ul><li>Comedy</li><li>Drama</li></ul></div>
-        <div class="score">7.9</div>
-        <div class="certification"></div>
-        <div class="year">2014</div>
-        <div class="backdrop">http://image.tmdb.org/t/p/w780/3AZX2KB73kSza76h9O4bzdNeIac.jpg</div>
-        <div class="runtime">99</div>
+        <section class="top-group">
+          <div class="score">7.9</div>
+          <div class="certification"></div>
+          <div class="year">2014</div>
+          <div class="runtime">99</div>
+        </section>
+        <section class="hr"></section>
+        <div class="overview clearfix">
+          <div class="left">
+            <img class="poster" src="http://image.tmdb.org/t/p/w780/nX5XotM9yprCKarRH4fzOq1VM1J.jpg" width="100"/>
+          </div>
+          <div class="right">
+            <div style="min-height:100px">The Grand Budapest Hotel tells of a legendary concierge at a famous European hotel between the wars and his friendship with a young employee who becomes his trusted protégé. The story involves the theft and recovery of a priceless Renaissance painting, the battle for an enormous family fortune and the slow and then sudden upheavals that transformed Europe during the first half of the 20th century.</div>
+            <br/>
+            <div class="genres"><ul><li>Comedy</li><li>Drama</li></ul></div>
+            <!--genres-->
+          </div>
+        </div>
+        <!--.overview-->
+      </div>
     </div>
     </div>
                 <div id="120467-trailer" class="content trailer trailer-need-init">
@@ -811,17 +966,30 @@ It's not fair. I love this sh*t!</div>
           <div class="cnt">
              <section class="top">
                 <div id="244786-synopsis" class="content active">
-    <div class="synopsis">
+    <div class="synopsis" style="background-image:url('http://image.tmdb.org/t/p/w780/qU8IpZlBNsTHNcApMHjtoQb4wp2.jpg');">
+      <div class="bg"></div>
+      <div class="should-be-relative">
         <div class="title">Whiplash</div>
-        <div class="overview">Under the direction of a ruthless instructor, a talented young drummer begins to pursue perfection at any cost, even his humanity.</div>
-        <div class="poster">http://image.tmdb.org/t/p/w780/lIv1QinFqz4dlp5U4lQ6HaiskOZ.jpg</div>
-        <div class="trailer">https://www.youtube.com/watch?v=7d_jQycdQGo</div>
-        <div class="genres"><ul><li>Drama</li><li>Music</li></ul></div>
-        <div class="score">8.6</div>
-        <div class="certification">R</div>
-        <div class="year">2014</div>
-        <div class="backdrop">http://image.tmdb.org/t/p/w780/qU8IpZlBNsTHNcApMHjtoQb4wp2.jpg</div>
-        <div class="runtime">105</div>
+        <section class="top-group">
+          <div class="score">8.6</div>
+          <div class="certification">R</div>
+          <div class="year">2014</div>
+          <div class="runtime">105</div>
+        </section>
+        <section class="hr"></section>
+        <div class="overview clearfix">
+          <div class="left">
+            <img class="poster" src="http://image.tmdb.org/t/p/w780/lIv1QinFqz4dlp5U4lQ6HaiskOZ.jpg" width="100"/>
+          </div>
+          <div class="right">
+            <div style="min-height:100px">Under the direction of a ruthless instructor, a talented young drummer begins to pursue perfection at any cost, even his humanity.</div>
+            <br/>
+            <div class="genres"><ul><li>Drama</li><li>Music</li></ul></div>
+            <!--genres-->
+          </div>
+        </div>
+        <!--.overview-->
+      </div>
     </div>
     </div>
                 <div id="244786-trailer" class="content trailer trailer-need-init">
@@ -967,17 +1135,30 @@ Save your money or see something uplifting instead rather than this horseshit.</
           <div class="cnt">
              <section class="top">
                 <div id="245891-synopsis" class="content active">
-    <div class="synopsis">
+    <div class="synopsis" style="background-image:url('http://image.tmdb.org/t/p/w780/mFb0ygcue4ITixDkdr7wm1Tdarx.jpg');">
+      <div class="bg"></div>
+      <div class="should-be-relative">
         <div class="title">John Wick</div>
-        <div class="overview">After the sudden death of his beloved wife, John Wick receives one last gift from her, a beagle puppy named Daisy, and a note imploring him not to forget how to love. But John's mourning is interrupted when his 1969 Boss Mustang catches the eye of sadistic thug Iosef Tarasov who breaks into his house and steals it, beating John unconscious in the process. Unwittingly, he has just reawakened one of the most brutal assassins the underworld has ever known.</div>
-        <div class="poster">http://image.tmdb.org/t/p/w780/sq2MmFv9sanl9PFMfbdaBLveSJ8.jpg</div>
-        <div class="trailer">https://www.youtube.com/watch?v=RllJtOw0USI</div>
-        <div class="genres"><ul><li>Action</li><li>Thriller</li></ul></div>
-        <div class="score">7.2</div>
-        <div class="certification">R</div>
-        <div class="year">2014</div>
-        <div class="backdrop">http://image.tmdb.org/t/p/w780/mFb0ygcue4ITixDkdr7wm1Tdarx.jpg</div>
-        <div class="runtime">101</div>
+        <section class="top-group">
+          <div class="score">7.2</div>
+          <div class="certification">R</div>
+          <div class="year">2014</div>
+          <div class="runtime">101</div>
+        </section>
+        <section class="hr"></section>
+        <div class="overview clearfix">
+          <div class="left">
+            <img class="poster" src="http://image.tmdb.org/t/p/w780/sq2MmFv9sanl9PFMfbdaBLveSJ8.jpg" width="100"/>
+          </div>
+          <div class="right">
+            <div style="min-height:100px">After the sudden death of his beloved wife, John Wick receives one last gift from her, a beagle puppy named Daisy, and a note imploring him not to forget how to love. But John's mourning is interrupted when his 1969 Boss Mustang catches the eye of sadistic thug Iosef Tarasov who breaks into his house and steals it, beating John unconscious in the process. Unwittingly, he has just reawakened one of the most brutal assassins the underworld has ever known.</div>
+            <br/>
+            <div class="genres"><ul><li>Action</li><li>Thriller</li></ul></div>
+            <!--genres-->
+          </div>
+        </div>
+        <!--.overview-->
+      </div>
     </div>
     </div>
                 <div id="245891-trailer" class="content trailer trailer-need-init">

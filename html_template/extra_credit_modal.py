@@ -57,6 +57,20 @@ class ExtraCredit(object):
 
     style_template = u'''
     <style>
+
+        .modal-dialog ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        .modal-dialog ::-webkit-scrollbar-track {
+            background-color:#191717;
+        }
+
+        .modal-dialog ::-webkit-scrollbar-thumb {
+            background-color:#424242;
+        }
+
+
         .modal-dialog {
           width: 80%;
           height: 80%;
@@ -145,6 +159,121 @@ class ExtraCredit(object):
         .cnt .bottom .menu a:hover.active {
           color:#666;
         }
+
+        .synopsis {
+          font-family: 'Open Sans', sans-serif;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: top center;
+          padding-left:20px;
+          position: relative;
+          width:100%;
+          height:100%;
+        }
+
+        .synopsis .bg {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          left: 0;
+          top: 0;
+          background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 100%); /* FF3.6+ */
+          background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.65))); /* Chrome,Safari4+ */
+          background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 100%); /* Chrome10+,Safari5.1+ */
+          background: -o-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 100%); /* Opera 11.10+ */
+          background: -ms-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 100%); /* IE10+ */
+          background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 100%); /* W3C */
+          filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#a6000000', GradientType=0); /* IE6-9 */
+        }
+
+        .synopsis .should-be-relative {
+          position: relative;
+          width:100%;
+          height:100%;
+          overflow-y:scroll;
+        }
+
+        .synopsis .title {
+          font-size: 60px;
+          color: #fff;
+          margin: 60px 0 10px 0;
+
+        }
+
+        .synopsis .top-group {
+
+        }
+
+        .synopsis .top-group > div {
+          display: inline-block;
+          text-align: center;
+          color: #fff;
+          font-size: 14px;
+        }
+
+        .synopsis .top-group .score {
+          background: #8BC34A;
+          border-radius: 100%;
+          width: 30px;
+          height: 30px;
+          font-size: 14px;
+          line-height: 30px;
+        }
+
+        .synopsis .top-group .certification {
+          border: 1px solid #fff;
+          padding: 2px 10px;
+          border-radius: 3px;
+          font-size: 14px;
+          line-height: 24px;
+          height: 24px;
+          margin-left: 5px
+        }
+
+        .synopsis .top-group .year {
+          color: #eee;
+          font-size: 14px;
+          margin-left: 10px
+        }
+
+        .synopsis .hr {
+          border-bottom: 1px solid rgba(238, 238, 238, 0.33);
+          margin: 20px auto 40px auto;
+        }
+
+        .synopsis .overview {
+
+        }
+
+        .synopsis .overview .left {
+          float: left;
+          width: 100px;
+        }
+
+        .synopsis .overview .right {
+          float: left;
+          margin-left: 20px;
+          width: 400px;
+          display: inline-block;
+          color: #E9E9E9;
+          line-height: 22px;
+        }
+
+        .synopsis .overview .right .genres ul {
+          padding: 0;
+          margin-bottom:20px;
+        }
+
+        .synopsis .overview .right .genres li {
+          list-style: none;
+          display: inline-block;
+          border: 1px solid #eee;
+          padding: 2px 10px;
+          margin-right: 10px;
+          border-radius: 3px;
+        }
+
+
         .scale-media {
             width:100%;
             height:100%;
@@ -299,17 +428,30 @@ class ExtraCredit(object):
     '''
 
     synopsis_template = u'''
-    <div class="synopsis">
+    <div class="synopsis" style="background-image:url('{backdrop}');">
+      <div class="bg"></div>
+      <div class="should-be-relative">
         <div class="title">{title}</div>
-        <div class="overview">{overview}</div>
-        <div class="poster">{poster}</div>
-        <div class="trailer">{trailer}</div>
-        <div class="genres">{genres}</div>
-        <div class="score">{score}</div>
-        <div class="certification">{certification}</div>
-        <div class="year">{year}</div>
-        <div class="backdrop">{backdrop}</div>
-        <div class="runtime">{runtime}</div>
+        <section class="top-group">
+          <div class="score">{score}</div>
+          <div class="certification">{certification}</div>
+          <div class="year">{year}</div>
+          <div class="runtime">{runtime}</div>
+        </section>
+        <section class="hr"></section>
+        <div class="overview clearfix">
+          <div class="left">
+            <img class="poster" src="{poster}" width="100"/>
+          </div>
+          <div class="right">
+            <div style="min-height:100px">{overview}</div>
+            <br/>
+            <div class="genres">{genres}</div>
+            <!--genres-->
+          </div>
+        </div>
+        <!--.overview-->
+      </div>
     </div>
     '''
 
