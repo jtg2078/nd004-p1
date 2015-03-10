@@ -25,6 +25,7 @@ main_page_head = u'''
         .movie-tile {
             margin-bottom: 20px;
             padding-top: 20px;
+            min-height: 460px;
         }
         .movie-tile:hover {
             background-color: #EEE;
@@ -62,7 +63,7 @@ main_page_content = u'''
       </div>
     </div>
     <div class="container">
-      {movie_tiles}
+        <div class="row">{movie_tiles}</div>
     </div>
   </body>
 </html>

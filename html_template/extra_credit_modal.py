@@ -82,13 +82,24 @@ class ExtraCredit(object):
           height:80%;
         }
         .hanging-close {
-            position: absolute;
-            top: -12px;
-            right: -12px;
-            z-index: 9001;
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          z-index: 9001;
+          border: solid 1px #fff;
+          border-radius: 3px;
+          padding: 4px 8px;
+          color: #fff;
+          text-decoration:none;
+        }
+        .hanging-close:hover {
+            background-color:#fff;
+            color:#000;
+            text-decoration:none;
+            border: solid 1px #000;
         }
         .cnt a {
-          text-decoration:none
+          text-decoration:none;
         }
         .cnt ul{
           list-style-type: none;
@@ -331,9 +342,7 @@ class ExtraCredit(object):
     <div class="modal" id="{movie_id}">
       <div class="modal-dialog">
         <div class="modal-content">
-          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
-            <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
-          </a>
+          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">CLOSE</a>
           <div class="cnt">
              <section class="top">
                 <div id="{movie_id}-synopsis" class="content active">{synopsis_tab}</div>
