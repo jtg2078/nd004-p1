@@ -12,3 +12,6 @@ python entertainment_center.py
 ## Credit  
 - https://dribbble.com/shots/1616186-IMDB-Concept-Hero
   - half-assed implemented the design, due to terrible frontend css skills
+- [Win Wu](https://github.com/winwu)
+  - crash course on css design and layout
+  - excellent help for debugging and troubleshooting layout issues
